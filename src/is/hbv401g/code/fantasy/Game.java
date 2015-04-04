@@ -4,6 +4,7 @@ import is.hbv401g.code.user.User;
 import is.hbv401g.code.user.UserTeam;
 import is.hbv401g.dummy.Core;
 import is.hbv401g.dummy.FootballPlayer;
+import is.hbv401g.dummy.Statistics;
 import is.hbv401g.ui.MainGui;
 import is.hbv401g.ui.PlayRound;
 
@@ -134,6 +135,11 @@ public class Game {
 			// TODO updateMarket
 			// TODO uppfæra stig
 			core.simulateNextRound();
+			FootballPlayer[] players = core.getAllFootballPlayers();
+			for (int i = 0; i<players.length; i++) {
+				Statistics[] stats = players[i].getStats();
+				System.out.println(players[i].getName() + " " + stats[1].getGoals());
+			}
 			roundNumber++;
 		}
 	}

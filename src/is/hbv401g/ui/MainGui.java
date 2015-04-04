@@ -14,6 +14,7 @@ import java.util.HashMap;
  * TODO
  *
  */
+
 public class MainGui extends JFrame {
 	private static final long serialVersionUID = 4142339874276567129L;
 	private static JPanel contentPane;

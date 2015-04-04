@@ -1,11 +1,18 @@
 package is.hbv401g.dummy;
+
+import java.io.IOException;
  
 public class Core {
     private Fantasy fantasy;
     private Scheduler schedule;
      
     public Core() {
-        fantasy = new Fantasy();
+        try {
+			fantasy = new Fantasy();
+		} catch (JSONException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         schedule = fantasy.getScheduler();
     }
      
