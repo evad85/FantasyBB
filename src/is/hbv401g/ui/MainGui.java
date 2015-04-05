@@ -1,12 +1,15 @@
 package is.hbv401g.ui;
 
 import is.hbv401g.code.fantasy.Game;
+
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
+
 import java.awt.CardLayout;
 import java.util.HashMap;
 
@@ -19,9 +22,10 @@ public class MainGui extends JFrame {
 	private static final long serialVersionUID = 4142339874276567129L;
 	private static JPanel contentPane;
 	private static CardLayout cardLayout = new CardLayout();
-	private final Game game = new Game();
+	private final static Game game = new Game();
 	
 	private static HashMap<String, ImageIcon> shirts = new HashMap<String, ImageIcon>();
+	private static HashMap<String, ImageIcon> logos = new HashMap<String, ImageIcon>();
 	
 	/**
 	 * Launch the application.
@@ -98,11 +102,41 @@ public class MainGui extends JFrame {
 	}
 	
 	/**
+	 * Links together a team name and a image for the teams logos
+	 */
+	public static void initLogos(){
+		logos.put("Arsenal", new ImageIcon(Transfers.class.getResource("/resources/arsenal.png")));
+		logos.put("Chelsea", new ImageIcon(Transfers.class.getResource("/resources/chelsea.png")));
+		logos.put("Stoke", new ImageIcon(Transfers.class.getResource("/resources/stoke.png")));
+		logos.put("Manchester United", new ImageIcon(Transfers.class.getResource("/resources/manutd.png")));
+		logos.put("Manchester City", new ImageIcon(Transfers.class.getResource("/resources/mancity.png")));
+		logos.put("Southampton", new ImageIcon(Transfers.class.getResource("/resources/southampton.png")));
+		logos.put("Swansea", new ImageIcon(Transfers.class.getResource("/resources/swansea.png")));
+		logos.put("Spurs", new ImageIcon(Transfers.class.getResource("/resources/spurs.png")));
+		logos.put("West Ham", new ImageIcon(Transfers.class.getResource("/resources/westham.png")));
+		logos.put("Liverpool", new ImageIcon(Transfers.class.getResource("/resources/liverpool.png")));
+			
+	}
+	
+	public static Game getGame(){
+		return game;
+	}
+	
+	/**
 	 * Returns the ImageIcon for a given team
 	 * @param name
 	 * @return
 	 */
 	public static ImageIcon getShirt(String name) {
 		return shirts.get(name);
+	}
+	
+	/**
+	 * Returns the ImageIcon logo for a given team
+	 * @param name
+	 * @return
+	 */
+	public static ImageIcon getLogo(String name) {
+		return logos.get(name);
 	}
 }

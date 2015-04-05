@@ -13,7 +13,7 @@ public class UserTeam {
 	
 	// players is all the football players a user has selected
 	// for his team
-	private static HashMap<String, FootballPlayer> players;
+	private HashMap<String, FootballPlayer> players;
 	
 	/**
 	 * Creates a new UserTeam
@@ -37,6 +37,10 @@ public class UserTeam {
 	 */
 	public HashMap<String, FootballPlayer> getPlayers() {
 		return players;
+	}
+	
+	public void putAll(HashMap<String, FootballPlayer> map){
+		players.putAll(map);
 	}
 	
 	/**

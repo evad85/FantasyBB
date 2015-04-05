@@ -6,6 +6,8 @@
  */
 package is.hbv401g.code.user;
 
+import java.util.ArrayList;
+
 import is.hbv401g.code.fantasy.Game;
 
 /**
@@ -17,7 +19,7 @@ public class User {
 	
 	// Each seat in userTeam holds information about the
 	// team the user selected for one round
-	private UserTeam [] userTeam;
+	private ArrayList<UserTeam> userTeam;
 	private final Game game;
 	private final String name; 
 	private int points;
@@ -37,7 +39,7 @@ public class User {
 	public User(String name, Game game) {
 		this.game = game;
 		this.name = name;
-		userTeam = new UserTeam[this.game.getMaxRounds()]; 
+		userTeam = new ArrayList<UserTeam>();
 		points = 0;
 		budget = 10000.0;
 		transferFinished = false;
@@ -58,7 +60,7 @@ public class User {
 	 * @return
 	 */
 	public UserTeam getUserTeam(int round) {
-		return userTeam[round];
+		return userTeam.get(round);
 	}
 
 	/**
@@ -66,7 +68,7 @@ public class User {
 	 * @param userTeam
 	 */
 	public void setUserTeam(UserTeam userTeam, int round) {
-		this.userTeam[round] = userTeam;
+		this.userTeam.add(round, userTeam);
 	}
 
 	/**

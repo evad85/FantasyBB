@@ -22,12 +22,14 @@ import javax.swing.SwingConstants;
 
 import java.awt.Color;
 import java.util.ArrayList;
-
+import java.util.Map;
 import java.awt.Font;
+
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.html.HTMLDocument.Iterator;
 
 /**
  * TODO
@@ -84,6 +86,7 @@ public class Transfers extends JPanel {
 	 */
 	public static void initPlayer() {
 		user = game.getUsers().get(game.getUserTurn());
+		System.out.println(game.getUsers().get(game.getUserTurn()).getName());
 		lblBudgetText.setText(user.getBudget()+"");
 		displayUserTeam();
 	}
@@ -599,9 +602,27 @@ public class Transfers extends JPanel {
 	class EndUserTurnActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//if(game.getNumberOfSelectedPlayers()==11) {
+			System.out.println(game.getNumberOfSelectedPlayers());
+			System.out.println(game.getCurrentUser().getUserTeam(game.getCurrentRound()).size());
+			
+			if(game.getNumberOfSelectedPlayers()==11) {
 			game.endUserTurn();	
-		//}
+
+		}
+			if (game.getUserTurn() == 1) {
+				
+				Map<String, FootballPlayer> map =game.getUsers().get(0).getUserTeam(game.getCurrentRound()).getPlayers();
+				for (FootballPlayer value : map.values()) {
+				    System.out.println("User 0 : " + value.getName());
+				}
+				
+				Map<String, FootballPlayer> map1 =game.getUsers().get(1).getUserTeam(game.getCurrentRound()).getPlayers();
+				for (FootballPlayer value : map1.values()) {
+				    System.out.println("User 1 : " + value.getName());
+				}
+
+
+			}
 		//else {
 			//JOptionPane.showMessageDialog(frame,
 				//    "Please select players for all positions");

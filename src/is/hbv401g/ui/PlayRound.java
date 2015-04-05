@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 import java.awt.Font;
 
 /**
@@ -47,8 +48,8 @@ public class PlayRound extends JPanel {
 	 * Updates the label that shows the users points
 	 */
 	public static void updatePoints() {
-		lblPlayer1PointsText.setText(String.valueOf(user1.getPoints()));
-		lblPlayer2PointsText.setText(String.valueOf(user2.getPoints()));
+		labelPlayer1PointsText.setText(String.valueOf(user1.getPoints()));
+		labelPlayer2PointsText.setText(String.valueOf(user2.getPoints()));
 	}
 	
 	/**

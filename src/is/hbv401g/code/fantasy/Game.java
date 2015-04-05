@@ -9,7 +9,10 @@ import is.hbv401g.ui.MainGui;
 import is.hbv401g.ui.PlayRound;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Game is main Model class and the link between all the GUI classes and the other Model
@@ -54,7 +57,11 @@ public class Game {
 	 */
 	public void updateUserTeam() {
 		User user = users.get(userTurn);
-		user.setUserTeam(tmpTeam, roundNumber);
+		System.out.println(user.getName());
+		UserTeam roundTeam = new UserTeam();
+		roundTeam.putAll(tmpTeam.getPlayers());;
+		user.setUserTeam(roundTeam, roundNumber);
+		tmpTeam = new UserTeam();
 	}
 	
 	/**
@@ -140,6 +147,7 @@ public class Game {
 				Statistics[] stats = players[i].getStats();
 				System.out.println(players[i].getName() + " " + stats[1].getGoals());
 			}
+			calculatePoints();
 			roundNumber++;
 		}
 	}
@@ -166,9 +174,34 @@ public class Game {
 	}
 	
 	// TODO
-	private void calculatePoints() {
-		
-	}
+		private void calculatePoints() {
+			for (int i = 0; i<1; i++){
+				User user = users.get(0);
+				int currentRound;
+				if(roundNumber == 1)
+				{
+					currentRound = 1;
+				}
+				else {
+					currentRound = roundNumber -1;
+				}
+				HashMap <String, FootballPlayer> team = user.getUserTeam(currentRound).getPlayers();
+				int points = user.getPoints();
+				
+				Iterator it = team.entrySet().iterator();
+			    while (it.hasNext()) {
+			        Map.Entry pair = (Map.Entry)it.next();
+			        String name = (String) pair.getKey();
+			        FootballPlayer player = market.findPlayer(name);
+					Statistics [] stats = player.getStats();
+					System.out.println("Score: " + player.getScore() + " Player " + player.getName());
+					//points += stats[currentRound].getScore();
+					points += player.getScore();   	        
+			    }
+			    System.out.println("Poiints " + points + user.getName());
+				user.updatePoints(points);
+			}
+		}
 	
 	/**
 	 * Returns the current round
@@ -209,10 +242,12 @@ public class Game {
 	 */
 	public void endUserTurn() {
 		updateUserTeam();
+
 		users.get(userTurn).setTransferFinished(true);
 		PlayRound.endUserTurn();
-		tmpTeam = new UserTeam();
+		System.out.println("user team:" + users.get(userTurn).getUserTeam(roundNumber).size());
 		MainGui.showCardLayout("panelPlayRound");
+
 	}
 	
 	/**

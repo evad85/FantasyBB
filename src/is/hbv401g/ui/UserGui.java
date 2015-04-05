@@ -74,6 +74,7 @@ public class UserGui extends JPanel {
 		namesLabels = new ArrayList<JLabel>();
 		shirtLabels = new ArrayList<JLabel>();
 		MainGui.initShirts();
+		MainGui.initLogos();
 		initView();
 	}
 	
