@@ -2,6 +2,7 @@ package is.hbv401g.ui;
 
 import is.hbv401g.code.fantasy.Game;
 import is.hbv401g.code.user.User;
+import is.hbv401g.code.user.UserTeam;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,8 +24,8 @@ public class PlayRound extends JPanel {
 	private static User user2;
 	private static JButton btnUser1, btnUser2,btnPlayRound;
 	private static JButton[] btnUserArray;
-	private static JLabel labelPlayer1PointsText,labelPlayer1Points,labelPlayer1NameText, lblPlayer1PointsText;
-	private static JLabel labelPlayer2NameText,labelPlayer2Points,labelPlayer2PointsText, lblPlayer2PointsText;
+	private static JLabel labelPlayer1PointsText,labelPlayer1Points,labelPlayer1NameText;
+	private static JLabel labelPlayer2NameText,labelPlayer2Points,labelPlayer2PointsText;
 	private static JLabel lblRound;
 	
 	
@@ -135,6 +136,8 @@ public class PlayRound extends JPanel {
 			game.setCurrentUser(0);
 			UserGui.initPlayer();
 			Transfers.initPlayer();
+			UserTeam team = game.getCurrentUser().getUserTeam(game.getCurrentRound());
+			UserGui.setTeam(team);
 			MainGui.showCardLayout("panelUser");
 		}
 	}
@@ -155,6 +158,12 @@ public class PlayRound extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			game.endRound();
+			updateRound();
+			updatePoints();
+			btnUserArray[0].setEnabled(true);
+			btnUserArray[1].setEnabled(true);
+			btnPlayRound.setEnabled(false);
+
 		}
 	}
 }

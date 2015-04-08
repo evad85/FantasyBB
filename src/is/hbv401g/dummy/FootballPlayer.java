@@ -9,9 +9,20 @@ public class FootballPlayer {
      
     private double   pickProbability; //how likely is this player to be in final team squad.
     private int      marketValue;
-    private int      score;
     private Position position;
     private String   picturePath;
+     
+    // The sum of all the round statistics:
+    private int cleanSheets;
+    private int goalsConceded;
+    private int yellowCards;
+    private int ownGoals;
+    private int redCards;
+    private int minutes;
+    private int assists;
+    private int goals;
+    private int saves;
+    private int score;
      
     //
     //CONSTUCTOR
@@ -51,17 +62,19 @@ public class FootballPlayer {
         int[] MF={5,    1,    3,    45,  3,      1,      1,     2,   1};
         int[] FW={4,    1,    3,    45,  3,      1,      1,     2,   0};
          
-        int newScore = this.score;
-        if(this.position == Position.GK){
-            newScore += this.calcScore(GK, roundNumber);
-        } else if(this.position == Position.DF){
-            newScore += this.calcScore(DF, roundNumber);
-        }else if(this.position == Position.MF){
-            newScore += this.calcScore(MF, roundNumber);
-        }else if(this.position == Position.FW){
-            newScore += this.calcScore(FW, roundNumber);
+        int newScore = 0;
+        if (this.position == Position.GK){
+            newScore = this.calcScore(GK, roundNumber);
+        } else if (this.position == Position.DF){
+            newScore = this.calcScore(DF, roundNumber);
+        } else if (this.position == Position.MF){
+            newScore = this.calcScore(MF, roundNumber);
+        } else if (this.position == Position.FW){
+            newScore = this.calcScore(FW, roundNumber);
         }
-        this.setScore( newScore );
+         
+        this.stats[roundNumber].setScore( newScore );
+        incrScoreBy( newScore );
     }
      
     // returns calculate score from the round that has just been simulated
@@ -98,11 +111,39 @@ public class FootballPlayer {
     public void setPickProbability( double pickProbability ){
         this.pickProbability = pickProbability;
     }
-    public void setScore(int score) {
-        this.score = score;
-    }
     public void setMarketValue(int value) {
         this.marketValue = value;
+    }
+     
+    public void setCleanSheets(int value) {
+        cleanSheets = value;
+    }
+    public void setGoalsConceded(int value) {
+        goalsConceded = value;
+    }
+    public void setYellowCards(int value) {
+        yellowCards = value;
+    }
+    public void setOwnGoals(int value) {
+        ownGoals = value;
+    }
+    public void setRedCards(int value) {
+        redCards = value;
+    }
+    public void setMinutes(int value) {
+        minutes = value;
+    }
+    public void setAssists(int value) {
+        assists = value;
+    }
+    public void setGoals(int value) {
+        goals = value;
+    }
+    public void setSaves(int value) {
+        saves = value;
+    }
+    public void setScore(int value) {
+        score = value;
     }
  
     //
@@ -126,10 +167,70 @@ public class FootballPlayer {
     public String getName( ){
         return this.name;
     }
-    public int getScore() {
-        return this.score;
-    }
     public Statistics[] getStats() {
         return this.stats;
+    }
+     
+    public int getCleanSheets() {
+        return cleanSheets;
+    }
+    public int getGoalsConceded() {
+        return goalsConceded;
+    }
+    public int getYellowCards() {
+        return yellowCards;
+    }
+    public int getOwnGoals() {
+        return ownGoals;
+    }
+    public int getRedCards() {
+        return redCards;
+    }
+    public int getMinutes() {
+        return minutes;
+    }
+    public int getAssists() {
+        return assists;
+    }
+    public int getGoals() {
+        return goals;
+    }
+    public int getSaves() {
+        return saves;
+    }
+    public int getScore() {
+        return score;
+    }
+     
+    // Incrementers
+    public void incrCleanSheetsBy(int amount) {
+        cleanSheets += amount;
+    }
+    public void incrGoalsConcededBy(int amount) {
+        goalsConceded += amount;
+    }
+    public void incrYellowCardsBy(int amount) {
+        yellowCards += amount;
+    }
+    public void incrOwnGoalsBy(int amount) {
+        ownGoals += amount;
+    }
+    public void incrRedCardsBy(int amount) {
+        redCards += amount;
+    }
+    public void incrMinutesBy(int amount) {
+        minutes += amount;
+    }
+    public void incrAssistsBy(int amount) {
+        assists += amount;
+    }
+    public void incrGoalsBy(int amount) {
+        goals += amount;
+    }
+    public void incrSavesBy(int amount) {
+        saves += amount;
+    }
+    public void incrScoreBy(int amount) {
+        score += amount;
     }
 }

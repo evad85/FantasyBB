@@ -25,7 +25,7 @@ public class Game {
 	// next round
 	private UserTeam tmpTeam;
 	private int roundNumber = 0;
-	private final int maxRounds = 18;
+	private final int maxRounds = 19;
 	// userTurn is the number of the user in the users List
 	// that is currently selecting his team
 	private int userTurn = 0;
@@ -175,16 +175,9 @@ public class Game {
 	
 	// TODO
 		private void calculatePoints() {
-			for (int i = 0; i<1; i++){
-				User user = users.get(0);
-				int currentRound;
-				if(roundNumber == 1)
-				{
-					currentRound = 1;
-				}
-				else {
-					currentRound = roundNumber -1;
-				}
+			for (int i = 0; i<2; i++){
+				User user = users.get(i);
+				int currentRound=roundNumber -1;
 				HashMap <String, FootballPlayer> team = user.getUserTeam(currentRound).getPlayers();
 				int points = user.getPoints();
 				
