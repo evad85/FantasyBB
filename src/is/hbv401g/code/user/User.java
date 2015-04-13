@@ -40,6 +40,7 @@ public class User {
 		this.game = game;
 		this.name = name;
 		userTeam = new ArrayList<UserTeam>();
+		userTeam.add(0, null);
 		points = 0;
 		budget = 10000.0;
 		transferFinished = false;
@@ -68,7 +69,9 @@ public class User {
 	 * @param userTeam
 	 */
 	public void setUserTeam(UserTeam userTeam, int round) {
+		System.out.println("djfjd");
 		this.userTeam.add(round, userTeam);
+		System.out.println("djfjd");
 	}
 
 	/**

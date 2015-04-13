@@ -22,6 +22,7 @@ import javax.swing.SwingConstants;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Map;
 import java.awt.Font;
 
@@ -29,7 +30,6 @@ import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.html.HTMLDocument.Iterator;
 
 /**
  * TODO
@@ -63,7 +63,8 @@ public class Transfers extends JPanel {
 	private JLabel forwardName1, forwardName2;
 	private JLabel goalkeeperName;
 	
-	private ArrayList<JLabel> namesLabels, shirtLabels;
+	private static ArrayList<JLabel> namesLabels;
+	private static ArrayList<JLabel> shirtLabels;
 	JFrame frame = new JFrame();
 	private JPanel panelTeam;
 	private static JLabel lblBudgetText;
@@ -308,6 +309,33 @@ public class Transfers extends JPanel {
 		lblBudgetText.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		lblBudgetText.setBounds(672, 19, 90, 16);
 		add(lblBudgetText);	
+		
+		JButton ButtonCreateTeam = new JButton("b\u00FAa til li\u00F0");
+		ButtonCreateTeam.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				UserTeam homeTeam= new UserTeam();
+				UserTeam awayTeam= new UserTeam();
+				int j=0;
+				if(game.getUserTurn()==0){
+					for(int i=0;i<11;i++){
+						homeTeam.addPlayer(players[j].getName(), players[j]);
+						j++;
+					}
+					game.setTmpTeam(homeTeam);
+				}
+				else{
+					j=20;
+					for(int i=0;i<11;i++){
+						awayTeam.addPlayer(players[j].getName(), players[j]);
+						j++;
+					}
+					game.setTmpTeam(awayTeam);
+				}
+				
+			}
+		});
+		ButtonCreateTeam.setBounds(203, 559, 89, 23);
+		add(ButtonCreateTeam);
 	}
 	
 	/**
@@ -325,7 +353,7 @@ public class Transfers extends JPanel {
 		goalkeeperImg = new JLabel("");
 		goalkeeperImg.setBounds(218, 7, 61, 66);
 		panelTeam.add(goalkeeperImg);
-		goalkeeperImg.setIcon(new ImageIcon(Transfers.class.getResource("/resources/manutd_goalkeeper_shirt.png")));
+		goalkeeperImg.setIcon(new ImageIcon(Transfers.class.getResource("/resources/no_team.png")));
 		
 		
 		//Add shirtLabels to list
@@ -334,61 +362,61 @@ public class Transfers extends JPanel {
 		defenceImg1 = new JLabel("");
 		defenceImg1.setBounds(67, 85, 61, 66);
 		panelTeam.add(defenceImg1);
-		defenceImg1.setIcon(new ImageIcon(Transfers.class.getResource("/resources/arsenal_shirt.png")));
+		defenceImg1.setIcon(new ImageIcon(Transfers.class.getResource("/resources/no_team.png")));
 		shirtLabels.add(defenceImg1);
 				
 		defenceImg2 = new JLabel("");
 		defenceImg2.setBounds(165, 85, 61, 66);
 		panelTeam.add(defenceImg2);
-		defenceImg2.setIcon(new ImageIcon(Transfers.class.getResource("/resources/chelsea_shirt.png")));
+		defenceImg2.setIcon(new ImageIcon(Transfers.class.getResource("/resources/no_team.png")));
 		shirtLabels.add(defenceImg2);
 		
 		defenceImg3 = new JLabel("");
 		defenceImg3.setBounds(281, 85, 61, 66);
 		panelTeam.add(defenceImg3);
-		defenceImg3.setIcon(new ImageIcon(Transfers.class.getResource("/resources/mancity_shirt.png")));
+		defenceImg3.setIcon(new ImageIcon(Transfers.class.getResource("/resources/no_team.png")));
 		shirtLabels.add(defenceImg3);
 			
 		defenceImg4 = new JLabel("");
 		defenceImg4.setBounds(367, 85, 61, 66);
 		panelTeam.add(defenceImg4);
-		defenceImg4.setIcon(new ImageIcon(Transfers.class.getResource("/resources/southampton_shirt.png")));
+		defenceImg4.setIcon(new ImageIcon(Transfers.class.getResource("/resources/no_team.png")));
 		shirtLabels.add(defenceImg4);
 				
 		middleImg1 = new JLabel("");
 		middleImg1.setBounds(67, 214, 61, 66);
 		panelTeam.add(middleImg1);
-		middleImg1.setIcon(new ImageIcon(Transfers.class.getResource("/resources/manutd_shirt.png")));
+		middleImg1.setIcon(new ImageIcon(Transfers.class.getResource("/resources/no_team.png")));
 		shirtLabels.add(middleImg1);
 				
 		middleImg2 = new JLabel("");
 		middleImg2.setBounds(165, 214, 61, 66);
 		panelTeam.add(middleImg2);
-		middleImg2.setIcon(new ImageIcon(Transfers.class.getResource("/resources/swansea_shirt.png")));
+		middleImg2.setIcon(new ImageIcon(Transfers.class.getResource("/resources/no_team.png")));
 		shirtLabels.add(middleImg2);
 		
 		middleImg3 = new JLabel("");
 		middleImg3.setBounds(281, 214, 61, 66);
 		panelTeam.add(middleImg3);
-		middleImg3.setIcon(new ImageIcon(Transfers.class.getResource("/resources/westham_shirt.png")));
+		middleImg3.setIcon(new ImageIcon(Transfers.class.getResource("/resources/no_team.png")));
 		shirtLabels.add(middleImg3);
 				
 		middleImg4 = new JLabel("");
 		middleImg4.setBounds(367, 214, 61, 66);
 		panelTeam.add(middleImg4);
-		middleImg4.setIcon(new ImageIcon(Transfers.class.getResource("/resources/liverpool_shirt.png")));
+		middleImg4.setIcon(new ImageIcon(Transfers.class.getResource("/resources/no_team.png")));
 		shirtLabels.add(middleImg4);
 		
 		forwardImg1 = new JLabel("");
 		forwardImg1.setBounds(175, 332, 61, 66);
 		panelTeam.add(forwardImg1);
-		forwardImg1.setIcon(new ImageIcon(Transfers.class.getResource("/resources/spurs_shirt.png")));
+		forwardImg1.setIcon(new ImageIcon(Transfers.class.getResource("/resources/no_team.png")));
 		shirtLabels.add(forwardImg1);
 		
 		forwardImg2 = new JLabel("");
 		forwardImg2.setBounds(261, 332, 61, 66);
 		panelTeam.add(forwardImg2);
-		forwardImg2.setIcon(new ImageIcon(Transfers.class.getResource("/resources/arsenal_shirt.png")));
+		forwardImg2.setIcon(new ImageIcon(Transfers.class.getResource("/resources/no_team.png")));
 		shirtLabels.add(forwardImg2);
 		
 		addGoalkeeper.setBounds(205, 68, 20, 16);
@@ -603,7 +631,6 @@ public class Transfers extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println(game.getNumberOfSelectedPlayers());
-			System.out.println(game.getCurrentUser().getUserTeam(game.getCurrentRound()).size());
 			
 			if(game.getNumberOfSelectedPlayers()==11) {
 			game.endUserTurn();	
@@ -634,6 +661,19 @@ public class Transfers extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			displayUserTeam();
+		}
+	}
+
+	public static void setTeam(UserTeam team) {
+		game.setTmpTeam(team);
+		int i=0;
+		for (Iterator<FootballPlayer> iterator = team.getPlayers().values().iterator(); iterator
+				.hasNext();) {
+			FootballPlayer player = iterator.next();
+			namesLabels.get(i).setText(player.getName());
+			shirtLabels.get(i).setIcon(MainGui.getShirt(player.getTeamName()));
+			buttonArray[i].setText("X");
+			i++;
 		}
 	}
 }

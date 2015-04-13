@@ -136,9 +136,13 @@ public class PlayRound extends JPanel {
 			game.setCurrentUser(0);
 			UserGui.initPlayer();
 			Transfers.initPlayer();
-			UserTeam team = game.getCurrentUser().getUserTeam(game.getCurrentRound());
-			UserGui.setTeam(team);
+			if(game.getCurrentRound()>1){
+				UserTeam team = game.getCurrentUser().getUserTeam(game.getCurrentRound()-1);
+				UserGui.setTeam(team);
+				Transfers.setTeam(team);
+			}
 			MainGui.showCardLayout("panelUser");
+			
 		}
 	}
 	
@@ -149,6 +153,11 @@ public class PlayRound extends JPanel {
 			game.setCurrentUser(1);
 			UserGui.initPlayer();
 			Transfers.initPlayer();
+			if(game.getCurrentRound()>1){
+				UserTeam team = game.getCurrentUser().getUserTeam(game.getCurrentRound()-1);
+				UserGui.setTeam(team);
+				Transfers.setTeam(team);
+			}
 			MainGui.showCardLayout("panelUser");
 		}
 	}

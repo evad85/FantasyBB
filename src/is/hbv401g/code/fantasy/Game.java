@@ -24,8 +24,8 @@ public class Game {
 	// tmpTeam is the team the current user is selecting for the
 	// next round
 	private UserTeam tmpTeam;
-	private int roundNumber = 0;
-	private final int maxRounds = 19;
+	private int roundNumber = 1;
+	private final int maxRounds = 18;
 	// userTurn is the number of the user in the users List
 	// that is currently selecting his team
 	private int userTurn = 0;
@@ -58,9 +58,14 @@ public class Game {
 	public void updateUserTeam() {
 		User user = users.get(userTurn);
 		System.out.println(user.getName());
+		System.out.println(tmpTeam.size());
 		UserTeam roundTeam = new UserTeam();
-		roundTeam.putAll(tmpTeam.getPlayers());;
+		roundTeam.putAll(tmpTeam.getPlayers());
+		System.out.println(roundNumber);
+		System.out.println(roundTeam.size());
+		System.out.println("dfdfdfd");
 		user.setUserTeam(roundTeam, roundNumber);
+		System.out.println("dfdfdfd");
 		tmpTeam = new UserTeam();
 	}
 	
@@ -135,13 +140,16 @@ public class Game {
 	 * Ends the current round and starts a new one
 	 */
 	public void endRound() {
-		if (roundNumber==maxRounds) {
+		if (roundNumber>maxRounds) {
+			System.out.println("hae Þetta er MAX ROUNDS! LEIKUR ÆTTI AÐ VERA BÚINN");
 			endGame();
 		} else {
+			System.out.println("ÞETTA er rétt leikur er ekki búinn round: "+ getCurrentRound());
 			// TODO updateTeam
 			// TODO updateMarket
 			// TODO uppfÃ¦ra stig
 			core.simulateNextRound();
+			System.out.println("BÚINN AÐ SIMULATA ROUND ");
 			FootballPlayer[] players = core.getAllFootballPlayers();
 			for (int i = 0; i<players.length; i++) {
 				Statistics[] stats = players[i].getStats();
@@ -177,7 +185,7 @@ public class Game {
 		private void calculatePoints() {
 			for (int i = 0; i<2; i++){
 				User user = users.get(i);
-				int currentRound=roundNumber -1;
+				int currentRound=roundNumber;
 				HashMap <String, FootballPlayer> team = user.getUserTeam(currentRound).getPlayers();
 				int points = user.getPoints();
 				
@@ -187,9 +195,8 @@ public class Game {
 			        String name = (String) pair.getKey();
 			        FootballPlayer player = market.findPlayer(name);
 					Statistics [] stats = player.getStats();
-					System.out.println("Score: " + player.getScore() + " Player " + player.getName());
-					//points += stats[currentRound].getScore();
-					points += player.getScore();   	        
+					System.out.println("Score: " + player.getStats()[currentRound].getScore() + " Player " + player.getName());
+					points += player.getStats()[currentRound].getScore();  	        
 			    }
 			    System.out.println("Poiints " + points + user.getName());
 				user.updatePoints(points);
@@ -238,7 +245,6 @@ public class Game {
 
 		users.get(userTurn).setTransferFinished(true);
 		PlayRound.endUserTurn();
-		System.out.println("user team:" + users.get(userTurn).getUserTeam(roundNumber).size());
 		MainGui.showCardLayout("panelPlayRound");
 
 	}
