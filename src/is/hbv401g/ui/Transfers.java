@@ -138,6 +138,7 @@ public class Transfers extends JPanel {
 		if(valid==0) {
 			playerNameArray[num].setText(playerName);
 			imageArray[num].setIcon(MainGui.getShirt(player.getTeamName()));
+			System.out.println(player.getTeamName());
 			buttonArray[num].setText("X");
 			lblBudgetText.setText(game.getCurrentUser().getBudget() + "kr");
 			
