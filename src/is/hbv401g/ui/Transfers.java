@@ -688,7 +688,7 @@ public class Transfers extends JPanel {
 			game.endUserTurn();	
 
 		}
-			if (game.getUserTurn() == 1) {
+			else if (game.getUserTurn() == 1) {
 				
 				Map<String, FootballPlayer> map =game.getUsers().get(0).getUserTeam(game.getCurrentRound()).getPlayers();
 				for (FootballPlayer value : map.values()) {
@@ -702,10 +702,10 @@ public class Transfers extends JPanel {
 
 
 			}
-		//else {
-			//JOptionPane.showMessageDialog(frame,
-				//    "Please select players for all positions");
-		//}	
+		else {
+			JOptionPane.showMessageDialog(frame,
+				    "Please select players for all positions");
+		}	
 		}	
 	}
 	
