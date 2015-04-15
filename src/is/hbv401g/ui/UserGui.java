@@ -477,7 +477,7 @@ public class UserGui extends JPanel {
 			FootballPlayer player = iterator.next();
 			Statistics [] stats = player.getStats();
 		    Statistics roundStats = stats[game.getCurrentRound()-1];
-			teamNames.get(i).setText(player.getName());
+			teamNames.get(i).setText(Game.getLastName(player.getName()));
 			teamPoints.get(i).setText(roundStats.getScore() + "");
 			teamImg.get(i).setIcon(MainGui.getShirt(player.getTeamName()));
 			i++;

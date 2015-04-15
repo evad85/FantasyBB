@@ -141,15 +141,15 @@ public class Game {
 	 */
 	public void endRound() {
 		if (roundNumber>maxRounds) {
-			System.out.println("hae Þetta er MAX ROUNDS! LEIKUR ÆTTI AÐ VERA BÚINN");
+			System.out.println("hae ï¿½etta er MAX ROUNDS! LEIKUR ï¿½TTI Aï¿½ VERA Bï¿½INN");
 			endGame();
 		} else {
-			System.out.println("ÞETTA er rétt leikur er ekki búinn round: "+ getCurrentRound());
+			System.out.println("ï¿½ETTA er rï¿½tt leikur er ekki bï¿½inn round: "+ getCurrentRound());
 			// TODO updateTeam
 			// TODO updateMarket
 			// TODO uppfÃ¦ra stig
 			core.simulateNextRound();
-			System.out.println("BÚINN AÐ SIMULATA ROUND ");
+			System.out.println("Bï¿½INN Aï¿½ SIMULATA ROUND ");
 			FootballPlayer[] players = core.getAllFootballPlayers();
 			for (int i = 0; i<players.length; i++) {
 				Statistics[] stats = players[i].getStats();
@@ -193,7 +193,7 @@ public class Game {
 			    while (it.hasNext()) {
 			        Map.Entry pair = (Map.Entry)it.next();
 			        String name = (String) pair.getKey();
-			        FootballPlayer player = market.findPlayer(name);
+			        FootballPlayer player = market.findPlayer(Game.getLastName(name));
 					Statistics [] stats = player.getStats();
 					System.out.println("Score: " + player.getStats()[currentRound].getScore() + " Player " + player.getName());
 					points += player.getStats()[currentRound].getScore();  	        
@@ -283,5 +283,10 @@ public class Game {
 	 */
 	public int getMaxRounds() {
 		return maxRounds;
+	}
+	
+	public static String getLastName(String name){
+		String[] lastName = name.split("\\s+");
+		return lastName[0];
 	}
 }
