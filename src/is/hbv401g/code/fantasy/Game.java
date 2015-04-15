@@ -7,12 +7,17 @@ import is.hbv401g.dummy.FootballPlayer;
 import is.hbv401g.dummy.Statistics;
 import is.hbv401g.ui.MainGui;
 import is.hbv401g.ui.PlayRound;
+import is.hbv401g.ui.Transfers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  * Game is main Model class and the link between all the GUI classes and the other Model
@@ -25,7 +30,7 @@ public class Game {
 	// next round
 	private UserTeam tmpTeam;
 	private int roundNumber = 1;
-	private final int maxRounds = 18;
+	private final int maxRounds = 3;
 	// userTurn is the number of the user in the users List
 	// that is currently selecting his team
 	private int userTurn = 0;
@@ -141,15 +146,12 @@ public class Game {
 	 */
 	public void endRound() {
 		if (roundNumber>maxRounds) {
-			System.out.println("hae Þetta er MAX ROUNDS! LEIKUR ÆTTI AÐ VERA BÚINN");
+			System.out.println("hae ï¿½etta er MAX ROUNDS! LEIKUR ï¿½TTI Aï¿½ VERA Bï¿½INN");
 			endGame();
 		} else {
-			System.out.println("ÞETTA er rétt leikur er ekki búinn round: "+ getCurrentRound());
-			// TODO updateTeam
-			// TODO updateMarket
-			// TODO uppfÃ¦ra stig
+			System.out.println("ï¿½ETTA er rï¿½tt leikur er ekki bï¿½inn round: "+ getCurrentRound());
 			core.simulateNextRound();
-			System.out.println("BÚINN AÐ SIMULATA ROUND ");
+			System.out.println("Bï¿½INN Aï¿½ SIMULATA ROUND ");
 			FootballPlayer[] players = core.getAllFootballPlayers();
 			for (int i = 0; i<players.length; i++) {
 				Statistics[] stats = players[i].getStats();
@@ -158,11 +160,28 @@ public class Game {
 			calculatePoints();
 			roundNumber++;
 		}
+		users.get(0).setTransferFinished(false);
+		users.get(1).setTransferFinished(false);
 	}
 	
 	//TODO
 	private void endGame() {
-		
+		PlayRound.endGame();
+		int score1 = users.get(0).getPoints();
+		int score2 = users.get(1).getPoints();
+		String winnerString;
+		if(score1 > score2){
+			winnerString = users.get(0).getName() + " " + "won!";
+		}
+		else if (score2 > score1) {
+			winnerString = users.get(1).getName() + " " + "won!";;
+		}
+		else {
+			winnerString = "there was a tie!";
+		}
+		JFrame frame = new JFrame();
+		ImageIcon icon = new ImageIcon(Game.class.getResource("/resources/cup.png"));
+		JOptionPane.showMessageDialog(null, winnerString, "Congratulations", JOptionPane.OK_OPTION, icon);
 	}
 	
 	/**
@@ -187,13 +206,13 @@ public class Game {
 				User user = users.get(i);
 				int currentRound=roundNumber;
 				HashMap <String, FootballPlayer> team = user.getUserTeam(currentRound).getPlayers();
-				int points = user.getPoints();
+				int points = 0;
 				
 				Iterator it = team.entrySet().iterator();
 			    while (it.hasNext()) {
 			        Map.Entry pair = (Map.Entry)it.next();
 			        String name = (String) pair.getKey();
-			        FootballPlayer player = market.findPlayer(name);
+			        FootballPlayer player = market.findPlayer(Game.getLastName(name));
 					Statistics [] stats = player.getStats();
 					System.out.println("Score: " + player.getStats()[currentRound].getScore() + " Player " + player.getName());
 					points += player.getStats()[currentRound].getScore();  	        
@@ -283,5 +302,10 @@ public class Game {
 	 */
 	public int getMaxRounds() {
 		return maxRounds;
+	}
+	
+	public static String getLastName(String name){
+		String[] lastName = name.split("\\s+");
+		return lastName[0];
 	}
 }

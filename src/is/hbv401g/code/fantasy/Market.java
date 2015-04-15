@@ -53,7 +53,7 @@ public class Market {
 	public FootballPlayer findPlayer(String name) {
 		FootballPlayer player = null;
 		for(int i = 0; i<players.size(); i++) {
-			String playerName = players.get(i).getName();
+			String playerName = Game.getLastName(players.get(i).getName());
 			if(playerName.equals(name)) {
 				player = players.get(i);
 			}
