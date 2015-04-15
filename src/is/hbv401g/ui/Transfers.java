@@ -707,7 +707,6 @@ public class Transfers extends JPanel {
 	}
 
 	public static void setTeam(UserTeam team) {
-		System.out.println("for hindað");
 		game.setTmpTeam(team);
 		int i=0;
 		for (Iterator<FootballPlayer> iterator = team.getPlayers().values().iterator(); iterator
