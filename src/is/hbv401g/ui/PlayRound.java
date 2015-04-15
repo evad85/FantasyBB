@@ -123,7 +123,7 @@ public class PlayRound extends JPanel {
 		
 		lblRound = new JLabel("Round: 1");
 		lblRound.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		lblRound.setBounds(41, 306, 99, 16);
+		lblRound.setBounds(41, 306, 150, 16);
 		add(lblRound);
 		
 		btnUserArray = new JButton[]{btnUser1,btnUser2};
@@ -174,5 +174,11 @@ public class PlayRound extends JPanel {
 			btnPlayRound.setEnabled(false);
 
 		}
+	}
+	
+	public static void endGame(){
+		btnPlayRound.setEnabled(false);
+		btnUser1.setEnabled(false);
+		btnUser2.setEnabled(false);
 	}
 }
