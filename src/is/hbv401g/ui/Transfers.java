@@ -35,7 +35,7 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- * TODO
+ * Handles transfers of players between rounds
  *
  */
 public class Transfers extends JPanel {
@@ -47,7 +47,6 @@ public class Transfers extends JPanel {
 	
 	private JTable tableMarket;
 	private JPanel tablePanel;
-	
 	private JLabel goalkeeperImg;
 	private JLabel defenceImg1, defenceImg2, defenceImg3, defenceImg4;
 	private JLabel middleImg1, middleImg2, middleImg3, middleImg4;
@@ -67,7 +66,6 @@ public class Transfers extends JPanel {
 	private JLabel goalkeeperName;
 	private JComboBox teamComboBox;
 	private JComboBox positionComboBox;
-	
 	private static ArrayList<JLabel> namesLabels;
 	private static ArrayList<JLabel> shirtLabels;
 	JFrame frame = new JFrame();
@@ -131,18 +129,7 @@ public class Transfers extends JPanel {
 				imageArray[i].setIcon(MainGui.getShirt("noTeam"));
 				buttonArray[i].setText("+");
 			}
-		}else{
-				HashMap <String, FootballPlayer> team = game.getCurrentUser().getUserTeam(game.getCurrentRound()-1).getPlayers();
-				ArrayList<FootballPlayer> playerList = new ArrayList<FootballPlayer>(team.values());
-
-				for (int i = 0; i<11; i++) {
-					playerNameArray[i].setText(game.getLastName(playerList.get(i).getName()));
-					imageArray[i].setIcon(MainGui.getShirt(playerList.get(i).getTeamName()));
-					buttonArray[i].setText("+");
-				}
-				
 		}
-			//user.setUserTeam(new UserTeam(),game.getCurrentRound());	
 	}
 	
 	/**
@@ -197,7 +184,7 @@ public class Transfers extends JPanel {
 	}
 	
 	/**
-	 * Update market with sorted player list
+	 * Update market with a sorted player list
 	 */
 	private void sortMarket(String team, String position) {
 		
@@ -212,7 +199,7 @@ public class Transfers extends JPanel {
 	
 		for(int i = 0; i<sortedPlayers.size(); i++) {
 			
-				data[i][0] = sortedPlayers.get(i).getName();
+				data[i][0] = game.getLastName(sortedPlayers.get(i).getName());
 				data[i][1] = sortedPlayers.get(i).getPosition();
 				data[i][2] = sortedPlayers.get(i).getTeamName();
 				data[i][3] = sortedPlayers.get(i).getScore();
@@ -392,7 +379,7 @@ public class Transfers extends JPanel {
 	}
 	
 	/**
-	 * TODO
+	 * Initilize UI components
 	 */
 	private void initView(){
 		
@@ -680,36 +667,28 @@ public class Transfers extends JPanel {
 				addMiddle3, addMiddle4,addForward1, addForward2};	
 	}
 	
+	/**
+	 * Ends user turn and confirms users team
+	 *
+	 */
 	class EndUserTurnActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println(game.getNumberOfSelectedPlayers());
-			
 			if(game.getNumberOfSelectedPlayers()==11) {
-			game.endUserTurn();	
-
-		}
-			else if (game.getUserTurn() == 1) {
+				game.endUserTurn();	
+			}else {
 				
-				Map<String, FootballPlayer> map =game.getUsers().get(0).getUserTeam(game.getCurrentRound()).getPlayers();
-				for (FootballPlayer value : map.values()) {
-				    System.out.println("User 0 : " + value.getName());
-				}
-				
-				Map<String, FootballPlayer> map1 =game.getUsers().get(1).getUserTeam(game.getCurrentRound()).getPlayers();
-				for (FootballPlayer value : map1.values()) {
-				    System.out.println("User 1 : " + value.getName());
-				}
-
-
-			}
-		else {
-			JOptionPane.showMessageDialog(frame,
-				    "Please select players for all positions");
-		}	
+				JOptionPane.showMessageDialog(frame,
+					    "Please select players for all positions");
+			}	
 		}	
 	}
 	
+	/**
+	 * Reset the team in transfers to the users team in beginning of the current round
+	 *
+	 */
 	class ResetTeamActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -717,6 +696,10 @@ public class Transfers extends JPanel {
 		}
 	}
 
+	/**
+	 * Initialize the team in transfers with users team from the round before
+	 *
+	 */
 	public static void setTeam(UserTeam team) {
 		game.setTmpTeam(team);
 		int i=0;
@@ -730,6 +713,10 @@ public class Transfers extends JPanel {
 		}
 	}
 	
+	/**
+	 * Update player list depending on sort by selections. 
+	 *
+	 */
 	class SortByTeamActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {

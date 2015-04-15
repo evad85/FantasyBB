@@ -17,7 +17,13 @@ import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 
 /**
+<<<<<<< HEAD
  * Schedule displays the schedule for the next round
+||||||| merged common ancestors
+ * TODO
+=======
+ * Displays the schedule for next round
+>>>>>>> fa47e736c619ab3d1bc43f3fe316d798131258ff
  *
  */
 public class Schedule extends JPanel {
@@ -33,9 +39,23 @@ public class Schedule extends JPanel {
 	public Schedule(final Game game) {
 		setLocation(-249, -61);
 		setLayout(null);
+<<<<<<< HEAD
+||||||| merged common ancestors
+		
+
+=======
+		
+>>>>>>> fa47e736c619ab3d1bc43f3fe316d798131258ff
 		initView();
 		teams = game.getCore().getScheduleForNextRound();
 		
+<<<<<<< HEAD
+||||||| merged common ancestors
+		
+		
+=======
+		
+>>>>>>> fa47e736c619ab3d1bc43f3fe316d798131258ff
 		for (int i = 0; i < teams.length; i++) {
 		    for (int j = 0; j < teams[i].length; j++) {
 		        FootballTeam team = teams[i][j];
