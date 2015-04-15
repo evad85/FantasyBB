@@ -7,12 +7,17 @@ import is.hbv401g.dummy.FootballPlayer;
 import is.hbv401g.dummy.Statistics;
 import is.hbv401g.ui.MainGui;
 import is.hbv401g.ui.PlayRound;
+import is.hbv401g.ui.Transfers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  * Game is main Model class and the link between all the GUI classes and the other Model
@@ -25,7 +30,7 @@ public class Game {
 	// next round
 	private UserTeam tmpTeam;
 	private int roundNumber = 1;
-	private final int maxRounds = 18;
+	private final int maxRounds = 3;
 	// userTurn is the number of the user in the users List
 	// that is currently selecting his team
 	private int userTurn = 0;
@@ -145,9 +150,6 @@ public class Game {
 			endGame();
 		} else {
 			System.out.println("�ETTA er r�tt leikur er ekki b�inn round: "+ getCurrentRound());
-			// TODO updateTeam
-			// TODO updateMarket
-			// TODO uppfæra stig
 			core.simulateNextRound();
 			System.out.println("B�INN A� SIMULATA ROUND ");
 			FootballPlayer[] players = core.getAllFootballPlayers();
@@ -158,11 +160,28 @@ public class Game {
 			calculatePoints();
 			roundNumber++;
 		}
+		users.get(0).setTransferFinished(false);
+		users.get(1).setTransferFinished(false);
 	}
 	
 	//TODO
 	private void endGame() {
-		
+		PlayRound.endGame();
+		int score1 = users.get(0).getPoints();
+		int score2 = users.get(1).getPoints();
+		String winnerString;
+		if(score1 > score2){
+			winnerString = users.get(0).getName() + " " + "won!";
+		}
+		else if (score2 > score1) {
+			winnerString = users.get(1).getName() + " " + "won!";;
+		}
+		else {
+			winnerString = "there was a tie!";
+		}
+		JFrame frame = new JFrame();
+		ImageIcon icon = new ImageIcon(Game.class.getResource("/resources/cup.png"));
+		JOptionPane.showMessageDialog(null, winnerString, "Congratulations", JOptionPane.OK_OPTION, icon);
 	}
 	
 	/**
@@ -187,7 +206,7 @@ public class Game {
 				User user = users.get(i);
 				int currentRound=roundNumber;
 				HashMap <String, FootballPlayer> team = user.getUserTeam(currentRound).getPlayers();
-				int points = user.getPoints();
+				int points = 0;
 				
 				Iterator it = team.entrySet().iterator();
 			    while (it.hasNext()) {
