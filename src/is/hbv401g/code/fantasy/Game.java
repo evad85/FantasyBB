@@ -118,6 +118,14 @@ public class Game {
 	}
 	
 	/**
+	 * Returns temporary team
+	 * @return
+	 */
+	public UserTeam getTmpTeam() {
+		return tmpTeam;
+	}
+	
+	/**
 	 * Returns all the users
 	 * @return
 	 */

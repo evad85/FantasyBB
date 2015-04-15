@@ -135,9 +135,10 @@ public class Transfers extends JPanel {
 				ArrayList<FootballPlayer> playerList = new ArrayList<FootballPlayer>(team.values());
 
 				for (int i = 0; i<11; i++) {
+					game.getTmpTeam().addPlayer(game.getLastName(playerList.get(i).getName()), playerList.get(i));
 					playerNameArray[i].setText(game.getLastName(playerList.get(i).getName()));
 					imageArray[i].setIcon(MainGui.getShirt(playerList.get(i).getTeamName()));
-					buttonArray[i].setText("+");
+					buttonArray[i].setText("X");
 				}
 				
 		}
@@ -211,7 +212,7 @@ public class Transfers extends JPanel {
 	
 		for(int i = 0; i<sortedPlayers.size(); i++) {
 			
-				data[i][0] = sortedPlayers.get(i).getName();
+				data[i][0] = game.getLastName(sortedPlayers.get(i).getName());
 				data[i][1] = sortedPlayers.get(i).getPosition();
 				data[i][2] = sortedPlayers.get(i).getTeamName();
 				data[i][3] = sortedPlayers.get(i).getScore();

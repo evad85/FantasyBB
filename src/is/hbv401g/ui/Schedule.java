@@ -23,7 +23,7 @@ import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 
 /**
- * TODO
+ * Displays the schedule for next round
  *
  */
 public class Schedule extends JPanel {
@@ -41,11 +41,9 @@ public class Schedule extends JPanel {
 		setLocation(-249, -61);
 		setLayout(null);
 		
-
 		initView();
 		Schedule.game = game;
 		teams = game.getCore().getScheduleForNextRound();
-		
 		
 		
 		for (int i = 0; i < teams.length; i++) {
@@ -62,6 +60,9 @@ public class Schedule extends JPanel {
 		
 	}
 	
+	/**
+	 * Initializes the GUI
+	 */
 	private void initView(){
 		MainGui.initLogos();
 		JPanel panel = new JPanel();
