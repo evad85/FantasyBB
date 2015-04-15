@@ -23,6 +23,7 @@ import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -64,6 +65,8 @@ public class Transfers extends JPanel {
 	private JLabel middleName1, middleName2, middleName3, middleName4;
 	private JLabel forwardName1, forwardName2;
 	private JLabel goalkeeperName;
+	private JComboBox teamComboBox;
+	private JComboBox positionComboBox;
 	
 	private static ArrayList<JLabel> namesLabels;
 	private static ArrayList<JLabel> shirtLabels;
@@ -193,6 +196,35 @@ public class Transfers extends JPanel {
 	}
 	
 	/**
+	 * Update market with sorted player list
+	 */
+	private void sortMarket(String team, String position) {
+		
+		ArrayList<FootballPlayer> sortedPlayers = new ArrayList<FootballPlayer>();
+		for(int i = 0; i< players.length; i++){
+			if((team.equals(players[i].getTeamName()) || team.equals("All teams")) && (position.equals(players[i].getPosition().getPos()) || position.equals("All positions"))){
+				sortedPlayers.add(players[i]);
+			}
+		}
+		
+		Object [][] data = new Object[sortedPlayers.size()][5];
+	
+		for(int i = 0; i<sortedPlayers.size(); i++) {
+			
+				data[i][0] = sortedPlayers.get(i).getName();
+				data[i][1] = sortedPlayers.get(i).getPosition();
+				data[i][2] = sortedPlayers.get(i).getTeamName();
+				data[i][3] = sortedPlayers.get(i).getScore();
+				data[i][4] = sortedPlayers.get(i).getMarketValue();
+			
+		}
+		String [] columnNames = {"Name", "Position", "Team", "Points", "Cost"};
+		DefaultTableModel tableModel = new DefaultTableModel(data,columnNames);
+		tableMarket.setModel(tableModel);
+	}
+	
+	
+	/**
 	 * Initializes the buttons for adding and removing players
 	 */
 	private void initButtons() {
@@ -302,9 +334,14 @@ public class Transfers extends JPanel {
 		btnCancel.setBounds(6, 553, 85, 29);
 		add(btnCancel);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(599, 75, 248, 27);
-		add(comboBox);
+		String [] names = core.getAllFootballTeamNames();
+        ArrayList<String> stringList = new ArrayList<String>();
+		stringList.add("All teams");
+		stringList.addAll(Arrays.asList(names));
+		teamComboBox = new JComboBox(stringList.toArray());
+		teamComboBox.setBounds(599, 75, 175, 27);
+		add(teamComboBox);
+		teamComboBox.addActionListener(new SortByTeamActionListener());
 		
 		JLabel lblTeam = new JLabel("Team:");
 		lblTeam.setBounds(519, 79, 61, 16);
@@ -314,9 +351,11 @@ public class Transfers extends JPanel {
 		lblPosition.setBounds(519, 120, 61, 16);
 		add(lblPosition);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(599, 116, 248, 27);
-		add(comboBox_1);
+		String [] posStrings = {"All positions", "Goalkeeper", "Defender", "Midfielder", "Forward"};
+		positionComboBox = new JComboBox(posStrings);
+		positionComboBox.setBounds(599, 116, 175, 27);
+		add(positionComboBox);
+		positionComboBox.addActionListener(new SortByTeamActionListener());
 		
 		lblBudgetText = new JLabel("");
 		lblBudgetText.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
@@ -687,6 +726,13 @@ public class Transfers extends JPanel {
 			shirtLabels.get(i).setIcon(MainGui.getShirt(player.getTeamName()));
 			buttonArray[i].setText("X");
 			i++;
+		}
+	}
+	
+	class SortByTeamActionListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			sortMarket(teamComboBox.getSelectedItem().toString(), positionComboBox.getSelectedItem().toString());
 		}
 	}
 }

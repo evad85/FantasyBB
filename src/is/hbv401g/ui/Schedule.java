@@ -184,11 +184,11 @@ public class Schedule extends JPanel {
 		panel.add(panel_5);
 		panel_5.setLayout(null);
 		
-		JLabel home_img4 = new JLabel("");
-		home_img4.setBounds(202, 7, 53, 38);
-		panel_5.add(home_img4);
-		home_img4.setBackground(Color.ORANGE);
-		home_img4.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel home_img5 = new JLabel("");
+		home_img5.setBounds(202, 7, 53, 38);
+		panel_5.add(home_img5);
+		home_img5.setBackground(Color.ORANGE);
+		home_img5.setHorizontalAlignment(SwingConstants.CENTER);
 		
 				
 				JLabel home_5 = new JLabel("New label");
@@ -239,11 +239,11 @@ public class Schedule extends JPanel {
 				panel_4.add(lblVs_3);
 				lblVs_3.setHorizontalAlignment(SwingConstants.CENTER);
 				
-				JLabel home_img5 = new JLabel("");
-				home_img5.setBounds(202, 6, 53, 38);
-				panel_4.add(home_img5);
-				home_img5.setHorizontalAlignment(SwingConstants.CENTER);
-				home_img5.setBackground(Color.ORANGE);
+				JLabel home_img4 = new JLabel("");
+				home_img4.setBounds(202, 6, 53, 38);
+				panel_4.add(home_img4);
+				home_img4.setHorizontalAlignment(SwingConstants.CENTER);
+				home_img4.setBackground(Color.ORANGE);
 				
 				JLabel away_img4 = new JLabel("");
 				away_img4.setBounds(354, 6, 53, 38);
@@ -258,6 +258,6 @@ public class Schedule extends JPanel {
 		add(lblScheduleForNext);
 		
 		teamLabels = new ArrayList<JLabel>(Arrays.asList(home_1, away_1, home_2, away_2,home_3, away_3,home_4, away_4,home_5, away_5 ));
-		logoLabels = new ArrayList<JLabel>(Arrays.asList(home_img1, away_img1, home_img2, away_img2,home_img3, away_img3,home_img4, away_img4,home_img5, away_img5 ));
+		logoLabels = new ArrayList<JLabel>(Arrays.asList(home_img1, away_img1, home_img2, away_img2,home_img3, away_img3,home_img5, away_img4,home_img4, away_img5 ));
 	}
 }

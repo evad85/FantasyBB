@@ -1,3 +1,4 @@
 /is/
 /resources/
-*.class
+/*.class
+/.DS_Store
