@@ -22,6 +22,7 @@ public class PlayerLastWeekStats extends JPanel {
 		setPreferredSize(new Dimension(342,339));
 		setLayout(null);
 		
+		
 		JLabel labelLastWeek = new JLabel("Last Week Statistics");
 		labelLastWeek.setHorizontalAlignment(SwingConstants.CENTER);
 		labelLastWeek.setFont(new Font("Arial", Font.PLAIN, 16));
