@@ -3,19 +3,16 @@ package is.hbv401g.ui;
 import is.hbv401g.code.fantasy.Game;
 import is.hbv401g.code.user.User;
 import is.hbv401g.code.user.UserTeam;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import java.awt.Font;
 
 /**
- * TODO
- *
+ * PlayRound displays the games main screen. It shows information such as the current round
+ * and the users name and points.
  */
 public class PlayRound extends JPanel {
 	private static final long serialVersionUID = 4089039972033224279L;
@@ -28,7 +25,10 @@ public class PlayRound extends JPanel {
 	private static JLabel labelPlayer2NameText,labelPlayer2Points,labelPlayer2PointsText;
 	private static JLabel lblRound;
 	
-	
+	/**
+	 * Create the panel
+	 * @param game
+	 */
 	public PlayRound(final Game game) {
 		setLayout(null);
 		PlayRound.game = game;	
@@ -129,6 +129,10 @@ public class PlayRound extends JPanel {
 		btnUserArray = new JButton[]{btnUser1,btnUser2};
 	}
 	
+	/**
+	 * Sets the team for user1 as the team he selected in the previous rounds
+	 * Also displays a screen where user1 can change his team
+	 */
 	class User1TransferActionListener implements ActionListener {
 
 		@Override
@@ -141,11 +145,14 @@ public class PlayRound extends JPanel {
 				UserGui.setTeam(team);
 				Transfers.setTeam(team);
 			}
-			MainGui.showCardLayout("panelUser");
-			
+			MainGui.showCardLayout("panelUser");	
 		}
 	}
 	
+	/**
+	 * Sets the team for user2 as the team he selected in the previous rounds
+	 * Also displays a screen where user2 can change his team
+	 */
 	class User2TransferActionListener implements ActionListener {
 
 		@Override
@@ -162,6 +169,9 @@ public class PlayRound extends JPanel {
 		}
 	}
 	
+	/**
+	 * Updates the users points and the round number.
+	 */
 	class EndRoundActionListener implements ActionListener {
 
 		@Override
@@ -172,10 +182,13 @@ public class PlayRound extends JPanel {
 			btnUserArray[0].setEnabled(true);
 			btnUserArray[1].setEnabled(true);
 			btnPlayRound.setEnabled(false);
-
 		}
 	}
 	
+	/**
+	 * Makes the buttons for ending a round and transfers
+	 * disabled
+	 */
 	public static void endGame(){
 		btnPlayRound.setEnabled(false);
 		btnUser1.setEnabled(false);

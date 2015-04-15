@@ -12,11 +12,19 @@ import javax.swing.SwingConstants;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 
+/**
+ * PlayerLastWeekStats displays statistics for players in a users roster in
+ * the previous round
+ */
 public class PlayerLastWeekStats extends JPanel {
+
+	private static final long serialVersionUID = -1767010612727821441L;
 	private JTable table;
 
 	/**
-	 * Create the panel.
+	 * Initilaize the GUI
+	 * @param player
+	 * @param gameRound
 	 */
 	public PlayerLastWeekStats(FootballPlayer player, int gameRound) {
 		setPreferredSize(new Dimension(342,339));
@@ -35,7 +43,7 @@ public class PlayerLastWeekStats extends JPanel {
 		labelPlayerName.setBounds(0, 49, 342, 44);
 		add(labelPlayerName);
 		Statistics [] stats = player.getStats();
-	    Statistics roundStats = stats[gameRound];
+	    Statistics roundStats = stats[gameRound-1];
 	    Object rowData[][] = { 	{ "Minutes played", roundStats.getMinutes()},
 								{ "Goals scored",  roundStats.getGoals()},
 								{ "Assists", roundStats.getAssists()},

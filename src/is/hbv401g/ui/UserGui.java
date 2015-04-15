@@ -10,8 +10,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -100,7 +98,7 @@ public class UserGui extends JPanel {
 	}
 	
 	/**
-	 * TODO
+	 * Initializes the GUI
 	 */
 	private void initView(){
 		
@@ -336,140 +334,151 @@ public class UserGui extends JPanel {
 		pitch.setIcon(new ImageIcon(getClass().getResource("/resources/pitch.png")));
 		
 	}
+	
+	/**
+	 * Initializes buttons
+	 */
 	private void initButtons(){
 		//info buttons
-				btnGoalKeeperInfo = new JButton("i");
-				btnGoalKeeperInfo.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						String playerName=playerNameArray[0].getText();
-						createUserInfoGui(playerName);
-					}
-				});
-				btnGoalKeeperInfo.setBounds(228, 72, 20, 16);
-				panelTeam.add(btnGoalKeeperInfo);
-				btnGoalKeeperInfo.setBackground(Color.YELLOW);
+		btnGoalKeeperInfo = new JButton("i");
+		btnGoalKeeperInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String playerName=playerNameArray[0].getText();
+				createUserInfoGui(playerName);
+			}
+		});
+		btnGoalKeeperInfo.setBounds(228, 72, 20, 16);
+		panelTeam.add(btnGoalKeeperInfo);
+		btnGoalKeeperInfo.setBackground(Color.YELLOW);
+		
+		btnDefense1Info = new JButton("i");
+		btnDefense1Info.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String playerName=playerNameArray[1].getText();
+				createUserInfoGui(playerName);
+			}
+		});
+		btnDefense1Info.setBounds(77, 171, 20, 16);
+		panelTeam.add(btnDefense1Info);
+		btnDefense1Info.setBackground(Color.LIGHT_GRAY);
+		
+		btnDefense2Info = new JButton("i");
+		btnDefense2Info.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String playerName=playerNameArray[2].getText();
+				createUserInfoGui(playerName);
+			}
+		});
+		btnDefense2Info.setBounds(175, 171, 20, 16);
+		panelTeam.add(btnDefense2Info);
+		btnDefense2Info.setBackground(Color.YELLOW);
+		
+		btnDefense3Info = new JButton("i");
+		btnDefense3Info.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String playerName=playerNameArray[3].getText();
+				createUserInfoGui(playerName);
+			}
+		});
+		btnDefense3Info.setBounds(291, 171, 20, 16);
+		panelTeam.add(btnDefense3Info);
+		btnDefense3Info.setBackground(Color.YELLOW);
+		
+		btnDefense4Info = new JButton("i");
+		btnDefense4Info.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String playerName=playerNameArray[4].getText();
+				createUserInfoGui(playerName);
+			}
+		});
+		btnDefense4Info.setBounds(377, 171, 20, 16);
+		panelTeam.add(btnDefense4Info);
+		btnDefense4Info.setBackground(Color.YELLOW);
+		
+		btnMiddle1Info = new JButton("i");
+		btnMiddle1Info.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String playerName=playerNameArray[5].getText();
+				createUserInfoGui(playerName);
+			}
+		});
+		btnMiddle1Info.setBounds(77, 301, 20, 16);
+		panelTeam.add(btnMiddle1Info);
+		btnMiddle1Info.setBackground(Color.YELLOW);
+		
+		btnMiddle2Info = new JButton("i");
+		btnMiddle2Info.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String playerName=playerNameArray[6].getText();
+				createUserInfoGui(playerName);
+			}
+		});
+		btnMiddle2Info.setBounds(175, 301, 20, 16);
+		panelTeam.add(btnMiddle2Info);
+		btnMiddle2Info.setBackground(Color.YELLOW);
+		
+		btnMiddle3Info = new JButton("i");
+		btnMiddle3Info.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String playerName=playerNameArray[7].getText();
+				createUserInfoGui(playerName);
 				
-				btnDefense1Info = new JButton("i");
-				btnDefense1Info.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						String playerName=playerNameArray[1].getText();
-						createUserInfoGui(playerName);
-					}
-				});
-				btnDefense1Info.setBounds(77, 171, 20, 16);
-				panelTeam.add(btnDefense1Info);
-				btnDefense1Info.setBackground(Color.LIGHT_GRAY);
-				
-				btnDefense2Info = new JButton("i");
-				btnDefense2Info.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						String playerName=playerNameArray[2].getText();
-						createUserInfoGui(playerName);
-					}
-				});
-				btnDefense2Info.setBounds(175, 171, 20, 16);
-				panelTeam.add(btnDefense2Info);
-				btnDefense2Info.setBackground(Color.YELLOW);
-				
-				btnDefense3Info = new JButton("i");
-				btnDefense3Info.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						String playerName=playerNameArray[3].getText();
-						createUserInfoGui(playerName);
-					}
-				});
-				btnDefense3Info.setBounds(291, 171, 20, 16);
-				panelTeam.add(btnDefense3Info);
-				btnDefense3Info.setBackground(Color.YELLOW);
-				
-				btnDefense4Info = new JButton("i");
-				btnDefense4Info.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						String playerName=playerNameArray[4].getText();
-						createUserInfoGui(playerName);
-					}
-				});
-				btnDefense4Info.setBounds(377, 171, 20, 16);
-				panelTeam.add(btnDefense4Info);
-				btnDefense4Info.setBackground(Color.YELLOW);
-				
-				btnMiddle1Info = new JButton("i");
-				btnMiddle1Info.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						String playerName=playerNameArray[5].getText();
-						createUserInfoGui(playerName);
-					}
-				});
-				btnMiddle1Info.setBounds(77, 301, 20, 16);
-				panelTeam.add(btnMiddle1Info);
-				btnMiddle1Info.setBackground(Color.YELLOW);
-				
-				btnMiddle2Info = new JButton("i");
-				btnMiddle2Info.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						String playerName=playerNameArray[6].getText();
-						createUserInfoGui(playerName);
-					}
-				});
-				btnMiddle2Info.setBounds(175, 301, 20, 16);
-				panelTeam.add(btnMiddle2Info);
-				btnMiddle2Info.setBackground(Color.YELLOW);
-				
-				btnMiddle3Info = new JButton("i");
-				btnMiddle3Info.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						String playerName=playerNameArray[7].getText();
-						createUserInfoGui(playerName);
-						
-					}
-				});
-				btnMiddle3Info.setBounds(291, 301, 20, 16);
-				panelTeam.add(btnMiddle3Info);
-				btnMiddle3Info.setBackground(Color.YELLOW);
-				
-				btnMiddle4Info = new JButton("i");
-				btnMiddle4Info.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						String playerName=playerNameArray[8].getText();
-						createUserInfoGui(playerName);
-					}
-				});
-				btnMiddle4Info.setBounds(377, 301, 20, 16);
-				panelTeam.add(btnMiddle4Info);
-				btnMiddle4Info.setBackground(Color.YELLOW);
-				
-				btnForward1Info = new JButton("i");
-				btnForward1Info.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						String playerName=playerNameArray[9].getText();
-						createUserInfoGui(playerName);
-					}
-				});
-				btnForward1Info.setBounds(175, 423, 20, 16);
-				panelTeam.add(btnForward1Info);
-				btnForward1Info.setBackground(Color.YELLOW);
-				
-				btnForward2Info = new JButton("i");
-				btnForward2Info.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						String playerName=playerNameArray[10].getText();
-						createUserInfoGui(playerName);
-					}
-				});
-				btnForward2Info.setBounds(291, 423, 20, 16);
-				panelTeam.add(btnForward2Info);
-				btnForward2Info.setBackground(Color.YELLOW);
+			}
+		});
+		btnMiddle3Info.setBounds(291, 301, 20, 16);
+		panelTeam.add(btnMiddle3Info);
+		btnMiddle3Info.setBackground(Color.YELLOW);
+		
+		btnMiddle4Info = new JButton("i");
+		btnMiddle4Info.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String playerName=playerNameArray[8].getText();
+				createUserInfoGui(playerName);
+			}
+		});
+		btnMiddle4Info.setBounds(377, 301, 20, 16);
+		panelTeam.add(btnMiddle4Info);
+		btnMiddle4Info.setBackground(Color.YELLOW);
+		
+		btnForward1Info = new JButton("i");
+		btnForward1Info.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String playerName=playerNameArray[9].getText();
+				createUserInfoGui(playerName);
+			}
+		});
+		btnForward1Info.setBounds(175, 423, 20, 16);
+		panelTeam.add(btnForward1Info);
+		btnForward1Info.setBackground(Color.YELLOW);
+		
+		btnForward2Info = new JButton("i");
+		btnForward2Info.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String playerName=playerNameArray[10].getText();
+				createUserInfoGui(playerName);
+			}
+		});
+		btnForward2Info.setBounds(291, 423, 20, 16);
+		panelTeam.add(btnForward2Info);
+		btnForward2Info.setBackground(Color.YELLOW);
 				
 	}
 	
+	/**
+	 * Initializes the GUI for player information
+	 * @param playerName
+	 */
 	public void createUserInfoGui(String playerName) {
 		if(playerName!="Name"){
-			FootballPlayer player =game.getMarket().findPlayer(playerName);
+			FootballPlayer player = game.getMarket().findPlayer(playerName);
 			new PlayerInfoGui(player, game.getCurrentRound());
 		}
 	}
 
-
+	/**
+	 * Initializes the users as the team that he selected for the previous round
+	 * @param userTeam
+	 */
 	public static void setTeam(UserTeam userTeam) {
 		int i=0;
 		for (Iterator<FootballPlayer> iterator = userTeam.getPlayers().values().iterator(); iterator
@@ -477,6 +486,10 @@ public class UserGui extends JPanel {
 			FootballPlayer player = iterator.next();
 			Statistics [] stats = player.getStats();
 		    Statistics roundStats = stats[game.getCurrentRound()-1];
+		    for (int j = 0; j<18; j++) {
+				System.out.println(j + " " + player.getName() + " " + stats[j].getScore());
+			}
+			System.out.println(game.getCurrentRound());
 			teamNames.get(i).setText(Game.getLastName(player.getName()));
 			teamPoints.get(i).setText(roundStats.getScore() + "");
 			teamImg.get(i).setIcon(MainGui.getShirt(player.getTeamName()));

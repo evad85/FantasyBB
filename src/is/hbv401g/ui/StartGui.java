@@ -14,12 +14,12 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 
 /**
- * TODO
- * @author evadoggsteingrimsdottir
+ * StartGui displays the games initial screen where the users choose their username
  *
  */
 public class StartGui extends JPanel {
 	
+	private static final long serialVersionUID = 8462271123727478111L;
 	private Game game;
 	
 	private JTextField textFieldUserName1, textFieldUserName2;
@@ -31,10 +31,8 @@ public class StartGui extends JPanel {
 	 */
 	public StartGui(Game game) {
 		setLayout(null);
-		this.game = game;
-		
+		this.game = game;	
 		initGui();
-
 	}
 	
 	/**
@@ -90,6 +88,11 @@ public class StartGui extends JPanel {
 		btnNewGame.addActionListener(new NewGameActionListener());
 	}
 	
+	/**
+	 * Checks if both users have chosen their username and if so displays the next screen.
+	 * Otherwise a error message is displayed
+	 *
+	 */
 	class NewGameActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -103,8 +106,7 @@ public class StartGui extends JPanel {
 				addUsers();
 				PlayRound.initPlayers();
 				MainGui.showCardLayout("panelPlayRound");
-			}
-			
+			}	
 		}	
 	}
 }

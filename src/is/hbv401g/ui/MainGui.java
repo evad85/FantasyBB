@@ -14,10 +14,8 @@ import java.awt.CardLayout;
 import java.util.HashMap;
 
 /**
- * TODO
- *
+ * MainGui creates the GUI panels for the game
  */
-
 public class MainGui extends JFrame {
 	private static final long serialVersionUID = 4142339874276567129L;
 	private static JPanel contentPane;
@@ -77,7 +75,7 @@ public class MainGui extends JFrame {
 	}
 	
 	/**
-	 * TODO
+	 * Shows a cardlayout
 	 * @param type
 	 */
 	public static void showCardLayout(String type ) {
@@ -118,6 +116,10 @@ public class MainGui extends JFrame {
 			
 	}
 	
+	/**
+	 * returns the game variable
+	 * @return
+	 */
 	public static Game getGame(){
 		return game;
 	}

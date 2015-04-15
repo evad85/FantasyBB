@@ -1,31 +1,23 @@
 package is.hbv401g.ui;
 
-import is.hbv401g.code.fantasy.Game;
-import is.hbv401g.code.fantasy.Market;
+
 import is.hbv401g.dummy.FootballPlayer;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-import java.awt.FlowLayout;
-import java.awt.Color;
-
-import javax.swing.SwingConstants;
-
-import java.awt.Font;
 import javax.swing.JTabbedPane;
+
+/**
+ * PlayerInfoGui displays informations about players in a users roster
+ */
 public class PlayerInfoGui extends JDialog implements ActionListener {
 
-  public PlayerInfoGui(FootballPlayer player, int gameRound) {
+	private static final long serialVersionUID = -8033559734669396904L;
+	
+	public PlayerInfoGui(FootballPlayer player, int gameRound) {
 	setLocation(400, 400);
 	setPreferredSize(new Dimension(350, 350));
     getContentPane().setLayout(null);

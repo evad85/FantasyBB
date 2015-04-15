@@ -12,10 +12,17 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 
+/**
+ * PlayerStatistics displays the statistics for the players in a users roster
+ */
 public class PlayerStatistics extends JPanel {
+	private static final long serialVersionUID = -8792114063137424710L;
 	private JTable table;
+	
 	/**
-	 * Create the panel.
+	 * Initializes the GUI
+	 * @param player
+	 * @param gameRound
 	 */
 	public PlayerStatistics(FootballPlayer player, int gameRound) {
 		setPreferredSize(new Dimension(342,339));
@@ -33,7 +40,7 @@ public class PlayerStatistics extends JPanel {
 		labelPlayerName.setBounds(0, 49, 342, 44);
 		add(labelPlayerName);
 		Statistics [] stats = player.getStats();
-	    Statistics roundStats = stats[gameRound];
+	    Statistics roundStats = stats[gameRound-1];
 	    Object rowData[][] = { 	{ "Minutes played", roundStats.getMinutes()},
 	    						{ "Goals scored",  roundStats.getGoals()},
 	    						{ "Assists", roundStats.getAssists()},
@@ -51,5 +58,4 @@ public class PlayerStatistics extends JPanel {
 		table.setFont(new Font("Arial", Font.PLAIN, 14));
 		scrollPane.setViewportView(table);
 	}
-
 }

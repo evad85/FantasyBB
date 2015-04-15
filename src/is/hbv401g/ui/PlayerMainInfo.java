@@ -1,8 +1,6 @@
 package is.hbv401g.ui;
 
-import is.hbv401g.code.fantasy.Game;
 import is.hbv401g.dummy.FootballPlayer;
-import is.hbv401g.dummy.Statistics;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -11,19 +9,25 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 
+/**
+ * PlayerStatistics displays key facts for players in a users roster
+ */
 public class PlayerMainInfo extends JPanel {
+
+	private static final long serialVersionUID = -6921245417501380298L;
 	JButton button; 
+	
 	/**
-	 * Create the panel.
+	 * Initializes the GUI
+	 * @param player
+	 * @param gameRound
 	 */
 	public PlayerMainInfo(FootballPlayer player, int gameRound) {
 			setPreferredSize(new Dimension(342, 438));
 			setLayout(null);
-		    JPanel buttonPane = new JPanel();
 		    
 		    JLabel labelPlayerInfoName = new JLabel(player.getName());
 		    labelPlayerInfoName.setBounds(0, 49, 342, 44);
@@ -114,17 +118,6 @@ public class PlayerMainInfo extends JPanel {
 		    labelKeyFacts.setFont(new Font("Arial", Font.PLAIN, 16));
 		    labelKeyFacts.setBounds(0, 0, 342, 44);
 		    add(labelKeyFacts);
-		    Statistics [] stats = player.getStats();
-		    Statistics roundStats = stats[gameRound];
-		    Object rowData[][] = { 	{ "Minutes played", roundStats.getMinutes()},
-					{ "Goals scored",  roundStats.getGoals()},
-					{ "Assists", roundStats.getAssists()},
-					{ "Goals Conceded", roundStats.getGoalsConceded()},
-					{ "Own Goals", roundStats.getOwnGoals() },
-					{ "Red Cards", roundStats.getRedCards() },
-					{ "Yellow Cards", roundStats.getYellowCards() },
-					{ "Saves", roundStats.getSaves() }};
-			Object columnNames[] = { "Statistic", "Value" };
 			
 			JScrollPane scrollPane = new JScrollPane();
 			scrollPane.setBounds(0, 129, 342, 160);
