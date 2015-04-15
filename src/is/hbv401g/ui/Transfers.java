@@ -103,20 +103,21 @@ public class Transfers extends JPanel {
 	 * @param e
 	 */
 	private void changePlayer(int num, ActionEvent e) {
-		if(tableMarket.getSelectedRow()==-1) {
+		JButton button = (JButton) e.getSource();
+		if(tableMarket.getSelectedRow()==-1 && button.getText().equals("+")) {
 			JOptionPane.showMessageDialog(frame,"You haven't selected any player");
 		}
 		
-		JButton button = (JButton) e.getSource();
-		String playerName = (String) tableMarket.getModel().getValueAt(tableMarket.getSelectedRow(), 0);
-		FootballPlayer player = game.getMarket().findPlayer(playerName);
-		if (button.getText().equals("+")) {
-			buyPlayer(player, playerName, num);
-				
-		}else{
-			sellPlayer(num);
+		else if (button.getText().equals("+")){
+			String playerName = (String) tableMarket.getModel().getValueAt(tableMarket.getSelectedRow(), 0);
+			FootballPlayer player = game.getMarket().findPlayer(playerName);
+				buyPlayer(player, playerName, num);
 		}
-	}
+		
+		else{
+			sellPlayer(num);
+			}
+		}
 	
 	/**
 	 * Initializes the GUI for the team the user selected in the previous 
