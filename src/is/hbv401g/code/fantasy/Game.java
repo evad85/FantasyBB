@@ -111,8 +111,11 @@ public class Game {
 		double marketValue = player.getMarketValue();
 		
 		if (tmpTeam.size() > 0) {
+			System.out.println("sold player");
 			user.updateBudget(marketValue, "+");
+			System.out.println(tmpTeam.size());
 			tmpTeam.removePlayer(name);
+			System.out.println(tmpTeam.size());
 		}
 		System.out.println("budget after sell" + user.getBudget());
 	}

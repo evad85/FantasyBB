@@ -131,19 +131,7 @@ public class Transfers extends JPanel {
 				imageArray[i].setIcon(MainGui.getShirt("noTeam"));
 				buttonArray[i].setText("+");
 			}
-		}else{
-				HashMap <String, FootballPlayer> team = game.getCurrentUser().getUserTeam(game.getCurrentRound()-1).getPlayers();
-				ArrayList<FootballPlayer> playerList = new ArrayList<FootballPlayer>(team.values());
-
-				for (int i = 0; i<11; i++) {
-					game.getTmpTeam().addPlayer(game.getLastName(playerList.get(i).getName()), playerList.get(i));
-					playerNameArray[i].setText(game.getLastName(playerList.get(i).getName()));
-					imageArray[i].setIcon(MainGui.getShirt(playerList.get(i).getTeamName()));
-					buttonArray[i].setText("X");
-				}
-				
 		}
-			//user.setUserTeam(new UserTeam(),game.getCurrentRound());	
 	}
 	
 	/**
@@ -719,6 +707,7 @@ public class Transfers extends JPanel {
 	}
 
 	public static void setTeam(UserTeam team) {
+		System.out.println("for hindað");
 		game.setTmpTeam(team);
 		int i=0;
 		for (Iterator<FootballPlayer> iterator = team.getPlayers().values().iterator(); iterator
