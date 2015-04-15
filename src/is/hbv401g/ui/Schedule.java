@@ -63,6 +63,7 @@ public class Schedule extends JPanel {
 	}
 	
 	private void initView(){
+		MainGui.initLogos();
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(211, 211, 211));
 		panel.setBounds(165, 84, 623, 254);
