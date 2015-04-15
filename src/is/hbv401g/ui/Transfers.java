@@ -132,7 +132,7 @@ public class Transfers extends JPanel {
 				ArrayList<FootballPlayer> playerList = new ArrayList<FootballPlayer>(team.values());
 
 				for (int i = 0; i<11; i++) {
-					playerNameArray[i].setText(game.getLastName(playerList.get(i).getName()));
+					playerNameArray[i].setText(playerList.get(i).getName());
 					imageArray[i].setIcon(MainGui.getShirt(playerList.get(i).getTeamName()));
 					buttonArray[i].setText("+");
 				}
@@ -149,7 +149,7 @@ public class Transfers extends JPanel {
 	private void buyPlayer(FootballPlayer player, String playerName, int num) {
 		int valid = game.addPlayer(playerName);
 		if(valid==0) {
-			playerNameArray[num].setText(game.getLastName(playerName));
+			playerNameArray[num].setText(playerName);
 			imageArray[num].setIcon(MainGui.getShirt(player.getTeamName()));
 			buttonArray[num].setText("X");
 			lblBudgetText.setText(game.getCurrentUser().getBudget() + "kr");
@@ -181,7 +181,7 @@ public class Transfers extends JPanel {
 		Object [][] data = new Object[players.length][5];
 		
 		for(int i = 0; i<players.length; i++) {
-			data[i][0] = game.getLastName(players[i].getName());
+			data[i][0] = players[i].getName();
 			data[i][1] = players[i].getPosition();
 			data[i][2] = players[i].getTeamName();
 			data[i][3] = players[i].getScore();
@@ -303,7 +303,7 @@ public class Transfers extends JPanel {
 		add(btnCancel);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(599, 75, 238, 27);
+		comboBox.setBounds(599, 75, 175, 27);
 		add(comboBox);
 		
 		JLabel lblTeam = new JLabel("Team:");
@@ -315,7 +315,7 @@ public class Transfers extends JPanel {
 		add(lblPosition);
 		
 		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(599, 116, 238, 27);
+		comboBox_1.setBounds(599, 116, 175, 27);
 		add(comboBox_1);
 		
 		lblBudgetText = new JLabel("");
@@ -614,12 +614,12 @@ public class Transfers extends JPanel {
 				
 		
 		tablePanel = new JPanel();
-		tablePanel.setBounds(519, 148, 322, 381);
+		tablePanel.setBounds(519, 148, 255, 381);
 		add(tablePanel);
 		tablePanel.setLayout(null);
 		
 		marketScrollPane = new JScrollPane();
-		marketScrollPane.setBounds(0, 0, 320, 381);
+		marketScrollPane.setBounds(0, 0, 255, 381);
 		tablePanel.add(marketScrollPane);
 		
 		tableMarket = new JTable();
@@ -683,7 +683,7 @@ public class Transfers extends JPanel {
 		for (Iterator<FootballPlayer> iterator = team.getPlayers().values().iterator(); iterator
 				.hasNext();) {
 			FootballPlayer player = iterator.next();
-			namesLabels.get(i).setText(player.getName());
+			namesLabels.get(i).setText(game.getLastName(player.getName()));
 			shirtLabels.get(i).setIcon(MainGui.getShirt(player.getTeamName()));
 			buttonArray[i].setText("X");
 			i++;
