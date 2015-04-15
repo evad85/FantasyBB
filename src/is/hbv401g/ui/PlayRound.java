@@ -137,7 +137,6 @@ public class PlayRound extends JPanel {
 			UserGui.initPlayer();
 			Transfers.initPlayer();
 			if(game.getCurrentRound()>1){
-				System.out.println("for hingað");
 				UserTeam team = game.getCurrentUser().getUserTeam(game.getCurrentRound()-1);
 				UserGui.setTeam(team);
 				Transfers.setTeam(team);
