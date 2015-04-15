@@ -21,7 +21,9 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import java.awt.Color;
+import java.awt.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.awt.Font;
@@ -118,14 +120,25 @@ public class Transfers extends JPanel {
 	 * round
 	 */
 	private static void displayUserTeam() {
-		if (game.getCurrentRound()==0) {
+		System.out.println(game.getCurrentRound());
+		if (game.getCurrentRound()==1) {
 			for (int i = 0; i<11; i++) {
 				playerNameArray[i].setText("Name");
 				imageArray[i].setIcon(MainGui.getShirt("noTeam"));
 				buttonArray[i].setText("+");
 			}
-			user.setUserTeam(new UserTeam(),game.getCurrentRound());
+		}else{
+				HashMap <String, FootballPlayer> team = game.getCurrentUser().getUserTeam(game.getCurrentRound()-1).getPlayers();
+				ArrayList<FootballPlayer> playerList = new ArrayList<FootballPlayer>(team.values());
+
+				for (int i = 0; i<11; i++) {
+					playerNameArray[i].setText(playerList.get(i).getName());
+					imageArray[i].setIcon(MainGui.getShirt(playerList.get(i).getTeamName()));
+					buttonArray[i].setText("+");
+				}
+				
 		}
+			//user.setUserTeam(new UserTeam(),game.getCurrentRound());	
 	}
 	
 	/**
@@ -138,7 +151,6 @@ public class Transfers extends JPanel {
 		if(valid==0) {
 			playerNameArray[num].setText(playerName);
 			imageArray[num].setIcon(MainGui.getShirt(player.getTeamName()));
-			System.out.println(player.getTeamName());
 			buttonArray[num].setText("X");
 			lblBudgetText.setText(game.getCurrentUser().getBudget() + "kr");
 			
