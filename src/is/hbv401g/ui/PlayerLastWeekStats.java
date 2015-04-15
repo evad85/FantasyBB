@@ -3,6 +3,7 @@ package is.hbv401g.ui;
 import java.awt.Dimension;
 
 import is.hbv401g.dummy.FootballPlayer;
+import is.hbv401g.dummy.Statistics;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -21,6 +22,7 @@ public class PlayerLastWeekStats extends JPanel {
 		setPreferredSize(new Dimension(342,339));
 		setLayout(null);
 		
+		
 		JLabel labelLastWeek = new JLabel("Last Week Statistics");
 		labelLastWeek.setHorizontalAlignment(SwingConstants.CENTER);
 		labelLastWeek.setFont(new Font("Arial", Font.PLAIN, 16));
@@ -32,14 +34,16 @@ public class PlayerLastWeekStats extends JPanel {
 		labelPlayerName.setFont(new Font("Arial", Font.PLAIN, 14));
 		labelPlayerName.setBounds(0, 49, 342, 44);
 		add(labelPlayerName);
-	    Object rowData[][] = { 	{ "Minutes played", player.getStats()[gameRound].getMinutes()},
-								{ "Goals scored",  player.getStats()[gameRound].getGoals()},
-								{ "Assists", player.getStats()[gameRound].getAssists()},
-								{ "Goals Conceded", player.getStats()[gameRound].getGoalsConceded()},
-								{ "Own Goals", player.getStats()[gameRound].getOwnGoals()},
-								{ "Red Cards", player.getStats()[gameRound].getRedCards()},
-								{ "Yellow Cards", player.getStats()[gameRound].getYellowCards()},
-								{ "Saves", player.getStats()[gameRound].getSaves() }};
+		Statistics [] stats = player.getStats();
+	    Statistics roundStats = stats[gameRound];
+	    Object rowData[][] = { 	{ "Minutes played", roundStats.getMinutes()},
+								{ "Goals scored",  roundStats.getGoals()},
+								{ "Assists", roundStats.getAssists()},
+								{ "Goals Conceded", roundStats.getGoalsConceded()},
+								{ "Own Goals", roundStats.getOwnGoals()},
+								{ "Red Cards", roundStats.getRedCards()},
+								{ "Yellow Cards", roundStats.getYellowCards()},
+								{ "Saves", roundStats.getSaves() }};
 	    Object columnNames[] = { "Statistic", "Value" };
 		
 		JScrollPane scrollPane = new JScrollPane();

@@ -32,10 +32,10 @@ public class PlayerInfoGui extends JDialog implements ActionListener {
     
     JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
     tabbedPane.setBorder(null);
-    tabbedPane.setBounds(0, 0, 334, 312);
+    tabbedPane.setBounds(0, 0, 334, 348);
     getContentPane().add(tabbedPane);
-    PlayerMainInfo panelPlayerMainInfo= new PlayerMainInfo(player);
-    PlayerStatistics panelPlayerStatistics= new PlayerStatistics(player);
+    PlayerMainInfo panelPlayerMainInfo= new PlayerMainInfo(player, gameRound);
+    PlayerStatistics panelPlayerStatistics= new PlayerStatistics(player, gameRound);
     PlayerLastWeekStats panelPlayerLastWeek= new PlayerLastWeekStats(player, gameRound);
     tabbedPane.addTab("Key Facts", null, panelPlayerMainInfo, null);
     tabbedPane.addTab("Statistics", null, panelPlayerStatistics, null);
@@ -51,6 +51,4 @@ public class PlayerInfoGui extends JDialog implements ActionListener {
     setVisible(false); 
     dispose(); 
   }
-
-
 }

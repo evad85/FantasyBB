@@ -4,6 +4,7 @@ import is.hbv401g.code.fantasy.Game;
 import is.hbv401g.code.user.User;
 import is.hbv401g.code.user.UserTeam;
 import is.hbv401g.dummy.FootballPlayer;
+import is.hbv401g.dummy.Statistics;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -474,8 +475,10 @@ public class UserGui extends JPanel {
 		for (Iterator<FootballPlayer> iterator = userTeam.getPlayers().values().iterator(); iterator
 				.hasNext();) {
 			FootballPlayer player = iterator.next();
+			Statistics [] stats = player.getStats();
+		    Statistics roundStats = stats[game.getCurrentRound()-1];
 			teamNames.get(i).setText(player.getName());
-			teamPoints.get(i).setText(player.stats[game.getCurrentRound()].getScore() + "");
+			teamPoints.get(i).setText(roundStats.getScore() + "");
 			teamImg.get(i).setIcon(MainGui.getShirt(player.getTeamName()));
 			i++;
 		}
