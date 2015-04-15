@@ -1,6 +1,8 @@
 package is.hbv401g.ui;
 
+import is.hbv401g.code.fantasy.Game;
 import is.hbv401g.dummy.FootballPlayer;
+import is.hbv401g.dummy.Statistics;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -18,8 +20,8 @@ public class PlayerMainInfo extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public PlayerMainInfo(FootballPlayer player) {
-			setPreferredSize(new Dimension(342,339));
+	public PlayerMainInfo(FootballPlayer player, int gameRound) {
+			setPreferredSize(new Dimension(342, 438));
 			setLayout(null);
 		    JPanel buttonPane = new JPanel();
 		    
@@ -112,14 +114,16 @@ public class PlayerMainInfo extends JPanel {
 		    labelKeyFacts.setFont(new Font("Arial", Font.PLAIN, 16));
 		    labelKeyFacts.setBounds(0, 0, 342, 44);
 		    add(labelKeyFacts);
-		    Object rowData[][] = { 	{ "Minutes played", player.getMinutes()},
-					{ "Goals scored",  player.getGoals()},
-					{ "Assists", player.getAssists()},
-					{ "Goals Conceded", player.getGoalsConceded()},
-					{ "Own Goals", player.getOwnGoals() },
-					{ "Red Cards", player.getRedCards() },
-					{ "Yellow Cards", player.getYellowCards() },
-					{ "Saves", player.getSaves() }};
+		    Statistics [] stats = player.getStats();
+		    Statistics roundStats = stats[gameRound];
+		    Object rowData[][] = { 	{ "Minutes played", roundStats.getMinutes()},
+					{ "Goals scored",  roundStats.getGoals()},
+					{ "Assists", roundStats.getAssists()},
+					{ "Goals Conceded", roundStats.getGoalsConceded()},
+					{ "Own Goals", roundStats.getOwnGoals() },
+					{ "Red Cards", roundStats.getRedCards() },
+					{ "Yellow Cards", roundStats.getYellowCards() },
+					{ "Saves", roundStats.getSaves() }};
 			Object columnNames[] = { "Statistic", "Value" };
 			
 			JScrollPane scrollPane = new JScrollPane();
