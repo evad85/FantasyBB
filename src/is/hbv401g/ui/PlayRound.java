@@ -3,12 +3,20 @@ package is.hbv401g.ui;
 import is.hbv401g.code.fantasy.Game;
 import is.hbv401g.code.user.User;
 import is.hbv401g.code.user.UserTeam;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 import java.awt.Font;
+import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 /**
  * PlayRound displays the games main screen. It shows information such as the current round
@@ -24,15 +32,21 @@ public class PlayRound extends JPanel {
 	private static JLabel labelPlayer1PointsText,labelPlayer1Points,labelPlayer1NameText;
 	private static JLabel labelPlayer2NameText,labelPlayer2Points,labelPlayer2PointsText;
 	private static JLabel lblRound;
+	private JLabel lblNewLabel;
 	
 	/**
 	 * Create the panel
 	 * @param game
 	 */
 	public PlayRound(final Game game) {
-		setLayout(null);
+		setBackground(new Color(238, 238, 238));
+		
+		Image bg = Toolkit.getDefaultToolkit().createImage("bacground.jpg");
+		//this.drawImage(bg, 0,0,null);
 		PlayRound.game = game;	
 		initGui();
+		
+		
 	}
 	
 	/**
@@ -77,54 +91,75 @@ public class PlayRound extends JPanel {
 	 */
 	private void initGui() {
 		btnUser1 = new JButton("Pick team");
+		btnUser1.setBounds(317, 237, 104, 44);
 		btnUser1.addActionListener(new User1TransferActionListener());
-		btnUser1.setBounds(36, 140, 104, 44);
+		setLayout(null);
 		add(btnUser1);
 		
 		btnUser2 = new JButton("Pick team");
+		btnUser2.setBounds(516, 237, 104, 44);
 		btnUser2.addActionListener(new User2TransferActionListener());
-		btnUser2.setBounds(244, 140, 104, 44);
 		add(btnUser2);
 		
 		btnPlayRound = new JButton("Play round");
+		btnPlayRound.setBounds(371, 435, 192, 44);
 		btnPlayRound.addActionListener(new EndRoundActionListener());
 		btnPlayRound.setEnabled(false);
-		btnPlayRound.setBounds(320, 296, 177, 44);
 		add(btnPlayRound);
 		
 		labelPlayer1PointsText = new JLabel("0");
-		labelPlayer1PointsText.setBounds(118, 99, 33, 14);
+		labelPlayer1PointsText.setFont(new Font("Lucida Grande", Font.BOLD, 18));
+		labelPlayer1PointsText.setForeground(Color.WHITE);
+		labelPlayer1PointsText.setBounds(390, 171, 33, 14);
 		add(labelPlayer1PointsText);
 		
 		labelPlayer1Points = new JLabel("Points:");
-		labelPlayer1Points.setBounds(47, 95, 61, 23);
+		labelPlayer1Points.setFont(new Font("Dialog", Font.BOLD, 18));
+		labelPlayer1Points.setForeground(Color.WHITE);
+		labelPlayer1Points.setBounds(317, 167, 61, 23);
 		add(labelPlayer1Points);
 		
 		labelPlayer1NameText = new JLabel("Player 1");
-		labelPlayer1NameText.setBounds(47, 73, 104, 14);
+		labelPlayer1NameText.setFont(new Font("Dialog", Font.BOLD, 18));
+		labelPlayer1NameText.setForeground(Color.WHITE);
+		labelPlayer1NameText.setBounds(317, 132, 104, 23);
 		add(labelPlayer1NameText);
 		
 		labelPlayer2NameText = new JLabel("Player 2");
-		labelPlayer2NameText.setBounds(255, 73, 104, 14);
+		labelPlayer2NameText.setFont(new Font("Dialog", Font.BOLD, 18));
+		labelPlayer2NameText.setForeground(Color.WHITE);
+		labelPlayer2NameText.setBounds(514, 132, 104, 23);
 		add(labelPlayer2NameText);
 		
 		labelPlayer2Points = new JLabel("Points:");
-		labelPlayer2Points.setBounds(255, 99, 61, 14);
+		labelPlayer2Points.setFont(new Font("Dialog", Font.BOLD, 18));
+		labelPlayer2Points.setForeground(Color.WHITE);
+		labelPlayer2Points.setBounds(516, 164, 61, 29);
 		add(labelPlayer2Points);
 		
 		labelPlayer2PointsText = new JLabel("0");
-		labelPlayer2PointsText.setBounds(328, 99, 33, 14);
+		labelPlayer2PointsText.setFont(new Font("Lucida Grande", Font.BOLD, 18));
+		labelPlayer2PointsText.setForeground(Color.WHITE);
+		labelPlayer2PointsText.setBounds(587, 171, 33, 14);
 		add(labelPlayer2PointsText);
 		
 		JLabel lblUsers = new JLabel("Players");
-		lblUsers.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		lblUsers.setBounds(166, 16, 104, 25);
+		lblUsers.setForeground(Color.WHITE);
+		lblUsers.setBounds(411, 46, 119, 44);
+		lblUsers.setFont(new Font("Helvetica", Font.BOLD, 24));
 		add(lblUsers);
 		
 		lblRound = new JLabel("Round: 1");
-		lblRound.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
-		lblRound.setBounds(41, 306, 150, 16);
+		lblRound.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRound.setForeground(Color.WHITE);
+		lblRound.setBounds(319, 363, 301, 35);
+		lblRound.setFont(new Font("Dialog", Font.BOLD, 18));
 		add(lblRound);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(PlayRound.class.getResource("/resources/background.jpg")));
+		lblNewLabel.setBounds(0, -12, 1001, 823);
+		add(lblNewLabel);
 		
 		btnUserArray = new JButton[]{btnUser1,btnUser2};
 	}
@@ -164,6 +199,9 @@ public class PlayRound extends JPanel {
 				UserTeam team = game.getCurrentUser().getUserTeam(game.getCurrentRound()-1);
 				UserGui.setTeam(team);
 				Transfers.setTeam(team);
+				Schedule.updateMatchResults(game);
+
+				
 			}
 			MainGui.showCardLayout("panelUser");
 		}

@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 
 /**
  * StartGui displays the games initial screen where the users choose their username
@@ -49,7 +50,7 @@ public class StartGui extends JPanel {
 	private void initGui() {	
 		
 		JPanel playerPanel = new JPanel();
-		playerPanel.setBounds(254, 214, 291, 272);
+		playerPanel.setBounds(325, 277, 291, 272);
 		add(playerPanel);
 		playerPanel.setLayout(null);
 		JButton btnNewGame = new JButton("Start game");
@@ -82,8 +83,13 @@ public class StartGui extends JPanel {
 		
 		JLabel lblFantasyFootball = new JLabel("Fantasy Football");
 		lblFantasyFootball.setFont(new Font("Lucida Grande", Font.PLAIN, 36));
-		lblFantasyFootball.setBounds(248, 36, 304, 55);
+		lblFantasyFootball.setBounds(325, 28, 304, 55);
 		add(lblFantasyFootball);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(StartGui.class.getResource("/resources/pl2.png")));
+		label.setBounds(383, 110, 186, 141);
+		add(label);
 		
 		btnNewGame.addActionListener(new NewGameActionListener());
 	}

@@ -42,7 +42,7 @@ public class User {
 		userTeam = new ArrayList<UserTeam>();
 		userTeam.add(0, null);
 		points = 0;
-		budget = 10000.0;
+		budget = 2000.0;
 		transferFinished = false;
 	}
 	

@@ -4,6 +4,7 @@ import is.hbv401g.code.user.User;
 import is.hbv401g.code.user.UserTeam;
 import is.hbv401g.dummy.Core;
 import is.hbv401g.dummy.FootballPlayer;
+import is.hbv401g.dummy.MatchResults;
 import is.hbv401g.dummy.Statistics;
 import is.hbv401g.ui.MainGui;
 import is.hbv401g.ui.PlayRound;
@@ -38,6 +39,8 @@ public class Game {
 	private final Core core;
 	// market contains information about all the football players
 	private Market market;
+	
+	private MatchResults[] matchResults;
 	
 	/**
 	 * Creates a new game
@@ -150,7 +153,7 @@ public class Game {
 			endGame();
 		} else {
 			System.out.println("�ETTA er r�tt leikur er ekki b�inn round: "+ getCurrentRound());
-			core.simulateNextRound();
+			matchResults = core.simulateNextRound();
 			System.out.println("B�INN A� SIMULATA ROUND ");
 			FootballPlayer[] players = core.getAllFootballPlayers();
 			for (int i = 0; i<players.length; i++) {
@@ -164,7 +167,13 @@ public class Game {
 		users.get(1).setTransferFinished(false);
 	}
 	
-	//TODO
+	public MatchResults[] getMatchResults() {
+		return matchResults;
+	}
+	
+	/**
+	 * Ends game, checks who won and displays dialog
+	 */
 	private void endGame() {
 		PlayRound.endGame();
 		int score1 = users.get(0).getPoints();
@@ -212,7 +221,7 @@ public class Game {
 			    while (it.hasNext()) {
 			        Map.Entry pair = (Map.Entry)it.next();
 			        String name = (String) pair.getKey();
-			        FootballPlayer player = market.findPlayer(Game.getLastName(name));
+			        FootballPlayer player = market.findPlayer(name);
 					Statistics [] stats = player.getStats();
 					System.out.println("Score: " + player.getStats()[currentRound].getScore() + " Player " + player.getName());
 					points += player.getStats()[currentRound].getScore();  	        
@@ -305,7 +314,13 @@ public class Game {
 	}
 	
 	public static String getLastName(String name){
+		System.out.println(name);
 		String[] lastName = name.split("\\s+");
-		return lastName[0];
+		if(lastName.length > 0){
+			return lastName[1];
+		}else{
+			return lastName[0];
+		
+	}
 	}
 }

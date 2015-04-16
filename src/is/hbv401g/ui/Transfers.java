@@ -143,7 +143,7 @@ public class Transfers extends JPanel {
 			playerNameArray[num].setText(playerName);
 			imageArray[num].setIcon(MainGui.getShirt(player.getTeamName()));
 			buttonArray[num].setText("X");
-			lblBudgetText.setText(game.getCurrentUser().getBudget() + "kr");
+			lblBudgetText.setText(game.getCurrentUser().getBudget() + " RGG");
 			
 		} else if (valid==1) {
 			JOptionPane.showMessageDialog(frame,"You have already selected this player for your team");
@@ -311,16 +311,15 @@ public class Transfers extends JPanel {
 		initView();
 		
 		JLabel lblBudget = new JLabel("Budget:");
-		lblBudget.setVerticalAlignment(SwingConstants.TOP);
 		lblBudget.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		lblBudget.setHorizontalAlignment(SwingConstants.LEFT);
-		lblBudget.setBounds(599, 16, 61, 40);
+		lblBudget.setBounds(599, 19, 73, 30);
 		add(lblBudget);
 		
-		JButton btnCancel = new JButton("Reset");
+		/*JButton btnCancel = new JButton("Reset");
 		btnCancel.addActionListener(new ResetTeamActionListener());
 		btnCancel.setBounds(6, 553, 85, 29);
-		add(btnCancel);
+		add(btnCancel);*/
 		
 		String [] names = core.getAllFootballTeamNames();
         ArrayList<String> stringList = new ArrayList<String>();
@@ -347,7 +346,7 @@ public class Transfers extends JPanel {
 		
 		lblBudgetText = new JLabel("");
 		lblBudgetText.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		lblBudgetText.setBounds(672, 19, 90, 16);
+		lblBudgetText.setBounds(672, 19, 175, 27);
 		add(lblBudgetText);	
 		
 		JButton ButtonCreateTeam = new JButton("b\u00FAa til li\u00F0");
