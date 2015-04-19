@@ -90,7 +90,6 @@ public class Transfers extends JPanel {
 	 */
 	public static void initPlayer() {
 		user = game.getUsers().get(game.getUserTurn());
-		System.out.println(game.getUsers().get(game.getUserTurn()).getName());
 		lblBudgetText.setText(user.getBudget()+"");
 		displayUserTeam();
 	}
@@ -122,7 +121,6 @@ public class Transfers extends JPanel {
 	 * round
 	 */
 	private static void displayUserTeam() {
-		System.out.println(game.getCurrentRound());
 		if (game.getCurrentRound()==1) {
 			for (int i = 0; i<11; i++) {
 				playerNameArray[i].setText("Name");
@@ -348,33 +346,6 @@ public class Transfers extends JPanel {
 		lblBudgetText.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		lblBudgetText.setBounds(672, 19, 175, 27);
 		add(lblBudgetText);	
-		
-		JButton ButtonCreateTeam = new JButton("b\u00FAa til li\u00F0");
-		ButtonCreateTeam.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				UserTeam homeTeam= new UserTeam();
-				UserTeam awayTeam= new UserTeam();
-				int j=0;
-				if(game.getUserTurn()==0){
-					for(int i=0;i<11;i++){
-						homeTeam.addPlayer(players[j].getName(), players[j]);
-						j++;
-					}
-					game.setTmpTeam(homeTeam);
-				}
-				else{
-					j=20;
-					for(int i=0;i<11;i++){
-						awayTeam.addPlayer(players[j].getName(), players[j]);
-						j++;
-					}
-					game.setTmpTeam(awayTeam);
-				}
-				
-			}
-		});
-		ButtonCreateTeam.setBounds(203, 559, 89, 23);
-		add(ButtonCreateTeam);
 	}
 	
 	/**
@@ -673,7 +644,6 @@ public class Transfers extends JPanel {
 	class EndUserTurnActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println(game.getNumberOfSelectedPlayers());
 			if(game.getNumberOfSelectedPlayers()==11) {
 				game.endUserTurn();	
 			}else {

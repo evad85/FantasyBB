@@ -179,6 +179,7 @@ public class PlayRound extends JPanel {
 				UserTeam team = game.getCurrentUser().getUserTeam(game.getCurrentRound()-1);
 				UserGui.setTeam(team);
 				Transfers.setTeam(team);
+				Schedule.updateMatchResults(game);
 			}
 			MainGui.showCardLayout("panelUser");	
 		}

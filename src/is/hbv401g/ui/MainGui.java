@@ -53,7 +53,6 @@ public class MainGui extends JFrame {
 		setContentPane(contentPane);
 		cardLayout = new CardLayout();
 		contentPane.setLayout(cardLayout);
-		System.out.println("hahe");
 		PlayRound panelPlayRound = new PlayRound(game);		
 		StartGui panelStart = new StartGui(game);
 		JTabbedPane panelUser = new JTabbedPane(JTabbedPane.TOP);		

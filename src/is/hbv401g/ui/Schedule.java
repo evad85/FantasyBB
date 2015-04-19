@@ -26,6 +26,8 @@ import javax.swing.border.LineBorder;
 public class Schedule extends JPanel {
 	private static final long serialVersionUID = 208275117573517329L;
 	private static FootballTeam[][] teams;
+	private static JPanel panel_6;
+	private static JLabel lblGameResults;
 	private static ArrayList<FootballTeam> schedule = new ArrayList<FootballTeam>();
 	private static ArrayList<JLabel> teamLabels;
 	private static ArrayList<JLabel> logoLabels;
@@ -44,7 +46,7 @@ public class Schedule extends JPanel {
 	public Schedule(final Game game) {
 		setLocation(-249, -61);
 		setLayout(null);
-
+		setBounds(100, 100, 900, 800);
 		initView();
 		teams = game.getCore().getScheduleForNextRound();
 		
@@ -68,8 +70,9 @@ public class Schedule extends JPanel {
 	 */
 	public static void updateMatchResults(Game game){
 		if (game.getCurrentRound() > 1) {
+			panel_6.setVisible(true);
+			lblGameResults.setVisible(true);
 			lastRoundResults = game.getMatchResults();
-			System.out.println("magnea" + lastRoundResults[1].getAwayTeam().getName());
 		}
 		
 		for (int i = 0; i < lastRoundResults.length; i++) {
@@ -82,12 +85,10 @@ public class Schedule extends JPanel {
 		
 		teams = game.getCore().getScheduleForNextRound();
 		schedule = new ArrayList<FootballTeam>();
-		System.out.println(schedule.size());
 
 		for (int i = 0; i < teams.length; i++) {
 		    for (int j = 0; j < teams[i].length; j++) {
 		        FootballTeam team = teams[i][j];
-		        System.out.println(teams[i][j].getName());
 		        schedule.add(team);
 		    }
 		}
@@ -294,14 +295,11 @@ public class Schedule extends JPanel {
 		lblScheduleForNext.setBounds(205, 29, 216, 16);
 		add(lblScheduleForNext);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(287, 398, 61, 16);
-		add(lblNewLabel);
-		
-		JPanel panel_6 = new JPanel();
+		panel_6 = new JPanel();
 		panel_6.setLayout(null);
 		panel_6.setBackground(new Color(211, 211, 211));
-		panel_6.setBounds(699, 76, 623, 254);
+		panel_6.setBounds(24, 407, 623, 254);
+		panel_6.setVisible(false);
 		add(panel_6);
 		
 		JPanel panel_7 = new JPanel();
@@ -478,6 +476,13 @@ public class Schedule extends JPanel {
 		awayLabels = new ArrayList<JLabel>(Arrays.asList(a_1, a_2,a_3, a_4, a_5));
 		awayLogoLabels = new ArrayList<JLabel>(Arrays.asList(aimg_1, aimg_2,aimg_3,aimg_4, aimg_5 ));
 		scoreLabels = new ArrayList<JLabel>(Arrays.asList(score1, score2, score3,score4, score5 ));
+		
+		lblGameResults = new JLabel("Game results");
+		lblGameResults.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGameResults.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
+		lblGameResults.setBounds(172, 361, 216, 16);
+		lblGameResults.setVisible(false);
+		add(lblGameResults);
 		
 	}
 }

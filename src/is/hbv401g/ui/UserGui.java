@@ -13,6 +13,8 @@ import java.util.Iterator;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -57,6 +59,7 @@ public class UserGui extends JPanel {
 	private JLabel goalkeeperPoints;
 	private static ArrayList<JLabel> teamNames, teamPoints,teamImg;
 	JLabel[] playerNameArray;
+	private static JFrame frame = new JFrame();
 	
 	/**
 	 * Creates the panel and initializes instance variables
